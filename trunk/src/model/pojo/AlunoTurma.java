@@ -25,8 +25,7 @@ public class AlunoTurma {
     List<Integer> listaNotaAtividades;
 
     public AlunoTurma(int id, Turma turma, Aluno aluno) {
-            this(id,turma.getId(),aluno.getId());
-            aluno.addRegistro(this.getId());
+            this(id,turma.getId(),0);
             turma.addRegistro(this.getId());
     }
     public AlunoTurma(int id, int turmaId, int alunoId) {
