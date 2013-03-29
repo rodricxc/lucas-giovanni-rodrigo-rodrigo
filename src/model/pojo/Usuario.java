@@ -4,42 +4,91 @@
  */
 package model.pojo;
 
+import java.io.Serializable;
+import java.util.Objects;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
 /**
  *
  * @author rodricxc
  */
-public abstract class Usuario {
+@MappedSuperclass
+public abstract class Usuario implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    
     private String nome;
     private String cpf;
-    private int id;
-
-
+    
     public Usuario(String nome, String cpf){
-            this.cpf = cpf;
-            this.nome = nome;
+        this.cpf = cpf;
+        this.nome = nome;
+    }
+    
+    public Long getId() {
+        return id;
     }
 
-    public String getCpf() {
-            return cpf;
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.cpf);
+        return hash;
     }
 
-    public void setCpf(String cpf) {
-            this.cpf = cpf;
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        if (!Objects.equals(this.cpf, other.cpf)) {
+            return false;
+        }
+        return true;
     }
 
+    
+
+    @Override
+    public String toString() {
+        return "model.dao.Usuario[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the nome
+     */
     public String getNome() {
-            return nome;
+        return nome;
     }
 
+    /**
+     * @param nome the nome to set
+     */
     public void setNome(String nome) {
-            this.nome = nome;
+        this.nome = nome;
     }
 
-    public int getId() {
-            return id;
+    /**
+     * @return the cpf
+     */
+    public String getCpf() {
+        return cpf;
     }
 
-    protected void setId(int id) {
-            this.id = id;
+    /**
+     * @param cpf the cpf to set
+     */
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
+    
 }
