@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -17,7 +18,8 @@ import javax.persistence.Entity;
 public class Aluno extends Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    private List<Integer> listaAlunoTurmas;
+    @OneToMany(mappedBy = "aluno")
+    private List<AlunoTurma> alunoTurmas;
 
     protected Aluno() {
         super("","");
@@ -26,7 +28,7 @@ public class Aluno extends Usuario implements Serializable {
 
     public Aluno( String nome, String cpf) {
             super(nome, cpf);
-            this.listaAlunoTurmas = new ArrayList<>();
+            this.alunoTurmas = new ArrayList<>();
     }
 
     @Override

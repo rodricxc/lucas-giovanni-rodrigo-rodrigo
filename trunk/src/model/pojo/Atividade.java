@@ -4,83 +4,77 @@
  */
 package model.pojo;
 
+import java.io.Serializable;
 import java.util.Calendar;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author rodricxc
  */
-public class Atividade {
-    private int id;
+@Entity
+public class Atividade implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    
     private String nome;
     private String tipo;
-    private Calendar data;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Calendar dataAtividade;
     private float valor;
-    private int turmaId;
+    @ManyToOne
+    private Turma turma;
 
-    public Atividade(int id, String nome, String tipo, Calendar data, float valor, int turmaId) {	
-            this.id = id;
-            this.nome = nome;
-            this.tipo = tipo;
-            this.data = data;
-            this.valor = valor;
-            this.turmaId = turmaId;	
+    public Atividade(String nome, String tipo, Calendar dataAtividade, float valor, Turma turma) {
+        this.nome = nome;
+        this.tipo = tipo;
+        this.dataAtividade = dataAtividade;
+        this.valor = valor;
+        this.turma = turma;
     }
 
-    public int getId() {
-            return id;
+    public Atividade() {
+    }
+    
+    public Long getId() {
+        return id;
     }
 
-    public void setId(int id) {
-            this.id = id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getNome() {
-            return nome;
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
     }
 
-
-    public String getTipo() {
-            return tipo;
-    }
-
-    public Calendar getData() {
-            return data;
-    }
-
-    public float getValor() {
-            return valor;
-    }
-
-
-    public int getTurmaId() {
-            return turmaId;
-    }
-    /**
-    * Converte o objeto para uma string de modo que ele possa ser 
-    * reconstruido com os mesmos valores
-    * 
-    * Usado na escrita em arquivo
-    */
-    public String toStringIDs() {
-            return String.format("%d\t%s\t%s\t%s\t%s\t%s\t%.2f\t%d", id, nome, tipo,
-                            data.get(Calendar.DAY_OF_MONTH), data.get(Calendar.MONTH),
-                            data.get(Calendar.YEAR), valor, turmaId);
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Atividade)) {
+            return false;
+        }
+        Atividade other = (Atividade) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-            return String.format("ID: %d\tNome: %s\tTipo: %s\tData: %d/%d/%d\tValor: %.2f", id, nome, tipo,
-                            data.get(Calendar.DAY_OF_MONTH), data.get(Calendar.MONTH),
-                            data.get(Calendar.YEAR), valor);
+        return "model.dao.Atividade[ id=" + id + " ]";
     }
-
-    public boolean equals(Object o){
-
-    if((o instanceof Atividade) && (((Atividade) o).getId() == this.getId())){
-     return true;
-    } else {
-     return false;
-    }
-    }    
+    
 }

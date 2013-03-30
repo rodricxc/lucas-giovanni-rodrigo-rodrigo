@@ -4,83 +4,67 @@
  */
 package model.pojo;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import model.pojo.Aluno;
 
 /**
  *
  * @author rodricxc
  */
-public class AlunoTurma {
-    private int id;
-    private int turmaId;
-    private int alunoId;
+@Entity
+public class AlunoTurma implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @ManyToOne
+    private Turma turma;
+    @ManyToOne
+    private Aluno aluno;
+    @OneToMany(mappedBy = "alunoTurma")
+    private List<NotaAtividade> notaAtividades;
     private int faltas;
     private float notaFinal;
-    /**
-     * Lista com Ids dos RegistroAtividade(s) que a auxiliam no
-     * salvamento das notas de cada aluno em determinada Atividade 
-     *  
-     */
-    List<Integer> listaNotaAtividades;
-
-    public AlunoTurma(int id, Turma turma, Aluno aluno) {
-            this(id,turma.getId(),0);
-            turma.addRegistro(this.getId());
-    }
-    public AlunoTurma(int id, int turmaId, int alunoId) {
-            this.id = id;
-            this.alunoId = alunoId;
-            this.turmaId = turmaId;
-            listaNotaAtividades = new ArrayList<>();
-    }
-    public AlunoTurma(int id, int turmaId, int alunoId, int faltas,
-                    float notaFinal, List<Integer> registroAtividades) {
-
-            this(id, turmaId, alunoId);
-            this.faltas = faltas;
-            this.notaFinal = notaFinal;
-            this.listaNotaAtividades = registroAtividades;
-    }
-    public int getFaltas() {
-            return faltas;
-    }
-    public void setFaltas(int faltas) {
-            this.faltas = faltas;
-    }
-    public int getId() {
-            return id;
-    }
-    public int getAlunoId() {
-            return this.alunoId;
-    }
-    public int getTurmaId() {
-            return this.turmaId;
-    }
-    /**
-    * Converte o objeto para uma string de modo que ele possa ser 
-    * reconstruido com os mesmos valores
-    * 
-    * Usado na escrita em arquivo
-    */
-    public String toStringIDs() {
-            int nAtividades = this.listaNotaAtividades.size();
-            String sAtividades = new String();
-            for (int i = 0; i < this.listaNotaAtividades.size(); i++) {
-                    sAtividades += "\t" + this.listaNotaAtividades.get(i);
-            }
-            return String.format("%d\t%d\t%d\t%d\t%.2f\t%d%s", id, turmaId, alunoId, faltas,
-                            notaFinal, nAtividades, sAtividades);
-    }
     
-    @Override
-    public boolean equals(Object o){
 
-        if((o instanceof AlunoTurma) && 
-                (((AlunoTurma)o).getId() == this.getId()) ){
-            return true;
-        } else {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof AlunoTurma)) {
             return false;
         }
+        AlunoTurma other = (AlunoTurma) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
     }
+
+    @Override
+    public String toString() {
+        return "model.dao.AlunoTurma[ id=" + id + " ]";
+    }
+    
 }
