@@ -134,4 +134,24 @@ public class AlunoJpaController implements Serializable {
         }
     }
     
+    public Aluno getAlunoByCPF(String cpf) {
+        EntityManager em = getEntityManager();
+        Query q = em.createQuery("SELECT * FROM ALUNO WHERE CPF='"+cpf+"'");
+        List<Aluno> results = (List<Aluno>) q.getResultList();
+        
+        return new Aluno("","");
+    }
+    
+    public List<Aluno> getAlunoByNome(String nome) {
+        EntityManager em = getEntityManager();
+        Query q = em.createQuery("SELECT * FROM ALUNO WHERE NOME='"+nome+"'");
+        List<Aluno> results = (List<Aluno>) q.getResultList();
+        
+        return results;
+    }
+    
+    public Aluno findAluno(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }
