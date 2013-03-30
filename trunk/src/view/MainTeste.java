@@ -9,6 +9,8 @@ import controller.ProfessorJpaController;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import model.dao.AlunoDao;
+import model.dao.AlunoDaoImpl;
 import model.pojo.Aluno;
 import model.pojo.Professor;
 
@@ -19,17 +21,47 @@ import model.pojo.Professor;
 public class MainTeste {
     private static final String PERSISTENCE_UNIT_NAME = "LucasGiovanniRodrigoRodrigo";
     private static EntityManagerFactory factory = 
-           Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME); ;
+           Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 
     public static void main(String args[]) {
-        Aluno a = new Aluno("rodrigo", "1231");
+        Aluno a = new Aluno("rodrigo", "131");
         Professor p = new Professor("poo","2123","comp");
         List<Aluno> lista;
         List<Professor> lista2;
         
+        
+        
+        
+        AlunoDao aDao = AlunoDaoImpl.getInstance();
+        AlunoDao aDao2 = AlunoDaoImpl.getInstance();
+        
+        aDao.add(new Aluno("rodogildo", "11111"));
+        aDao.add(new Aluno("rodolfo", "11"));
+        aDao.add(new Aluno("carlos", "2211"));
+        aDao.add(new Aluno("wsda", "21"));
+        aDao.add(new Aluno("gildo", "222"));
+        
+        
+        if(aDao.add(a)){
+            System.out.println("aluno 'added'");
+        }else{
+            System.out.println("nao foi possivel adicionar aluno");
+        }
+        /*
+        if(aDao.delete(a)){
+            System.out.println("aluno 'deleted'");
+        }else{
+            System.out.println("nao foi possivel deletar aluno");
+        }
+        
+        
+        /*
         AlunoJpaController jpa = new AlunoJpaController(factory);
         ProfessorJpaController jpap = new ProfessorJpaController(factory);
         
+        
+        
+        /*
         System.out.println("listagem:");
         lista = jpa.findAlunoEntities();
         lista2 = jpap.findProfessorEntities();
@@ -60,6 +92,6 @@ public class MainTeste {
             System.out.println(al.getNome()+"  "+al.getCpf());
         }
         System.out.println("-----------------------");
-        
+        */
     }
 }
