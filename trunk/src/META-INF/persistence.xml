@@ -5,12 +5,17 @@
     <class>model.pojo.Aluno</class>
     <class>model.pojo.Professor</class>
     <class>model.pojo.Usuario</class>
+    <class>model.pojo.AlunoTurma</class>
+    <class>model.pojo.Atividade</class>
+    <class>model.pojo.Disciplina</class>
+    <class>model.pojo.NotaAtividade</class>
+    <class>model.pojo.Turma</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/lucas_giovanni_rodrigo_rodrigo?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.password" value="suasenha"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
-      <property name="eclipselink.ddl-generation" value="create-tables"/>
+      <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
     </properties>
   </persistence-unit>
 </persistence>
