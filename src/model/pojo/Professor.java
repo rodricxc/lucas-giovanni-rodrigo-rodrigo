@@ -5,7 +5,9 @@
 package model.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -16,6 +18,8 @@ public class Professor extends Usuario implements Serializable {
     
 
     private String departamento;
+    @OneToMany(mappedBy = "professor")
+    private List<Turma> turmas;
 
     public Professor() {
         super("","");

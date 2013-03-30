@@ -4,85 +4,94 @@
  */
 package model.pojo;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author rodricxc
  */
-public class Disciplina {
-    private int id;
+@Entity
+public class Disciplina implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+   
     private String nome;
     private String ementa;
     private int cargaHoraria;
+    @OneToMany(mappedBy = "disciplina")
+    private List<Turma> turmas;
 
-    List<Integer> turmas;
-
-    public Disciplina(int id, String nome, String ementa, int cargaHoraria) {
-            this.id = id;
-            this.nome = nome;
-            this.ementa = ementa;
-            this.cargaHoraria = cargaHoraria;
-            this.turmas = new ArrayList<>();
+    public Disciplina() {
     }
 
-    public Disciplina(int id, String nome, String ementa, int cargaHoraria,
-                    List<Integer> turmas) {
-            this(id, nome, ementa, cargaHoraria);
-            this.turmas = turmas;
+    public Disciplina(String nome, String ementa, int cargaHoraria) {
+        this.nome = nome;
+        this.ementa = ementa;
+        this.cargaHoraria = cargaHoraria;
     }
 
-    public int getId() {
-            return id;
+    public Long getId() {
+        return id;
     }
 
     public String getNome() {
-            return nome;
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getEmenta() {
-            return ementa;
+        return ementa;
+    }
+
+    public void setEmenta(String ementa) {
+        this.ementa = ementa;
     }
 
     public int getCargaHoraria() {
-            return cargaHoraria;
-    }
-    /**
-    * Converte o objeto para uma string de modo que ele possa ser 
-    * reconstruido com os mesmos valores
-    * 
-    * Usado na escrita em arquivo
-    */
-    public String toStringIDs(){
-            int nTurmas = this.turmas.size();
-            String sTurmas = new String();
-            for (int i = 0; i < this.turmas.size(); i++) {
-                    sTurmas += "\t" + this.turmas.get(i);
-            }
-            return String.format("%d\t%s\t%s\t%d\t%d%s", id, nome, ementa, cargaHoraria, nTurmas, sTurmas);
+        return cargaHoraria;
     }
 
+    public void setCargaHoraria(int cargaHoraria) {
+        this.cargaHoraria = cargaHoraria;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Disciplina other = (Disciplina) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
+    }
+    
     @Override
     public String toString() {
-            return String.format("ID: %d \tNome: %s\tEmenta:\t%s\tCarga Horaria: %d", id, nome, ementa, cargaHoraria);
+        return "model.dao.Disciplina[ id=" + id + " ]";
     }
-    /**
-    * Converte o objeto para uma string para visualizaçao do usuario
-    * 
-    * Usado nas listagens
-    */
-    public String toStringSemEmenta() {
-            return String.format("ID: %d \tNome: %s\tCarga Horaria: %d", id, nome, cargaHoraria);
-    }
-
-    @Override
-    public boolean equals(Object o){
-
-     if((o instanceof Disciplina) && (((Disciplina)o).getNome().equals(this.getNome()))){
-             return true;
-     } else {
-             return false;
-     }
-    }
+    
 }
