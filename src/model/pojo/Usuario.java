@@ -22,8 +22,8 @@ public abstract class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String nome;
-    private String cpf;
+    protected String nome;
+    protected String cpf;
     
     public Usuario(String nome, String cpf){
         this.cpf = cpf;

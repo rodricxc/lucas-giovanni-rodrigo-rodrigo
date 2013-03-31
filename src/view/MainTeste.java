@@ -37,9 +37,10 @@ public class MainTeste {
         
         aDao.add(new Aluno("rodogildo", "11111"));
         aDao.add(new Aluno("rodolfo", "11"));
-        aDao.add(new Aluno("carlos", "2211"));
-        aDao.add(new Aluno("wsda", "21"));
+        aDao.add(new Aluno("carlosrod", "2211"));
+        aDao.add(new Aluno("rodrigo", "21"));
         aDao.add(new Aluno("gildo", "222"));
+        aDao.add(new Aluno("carlos", "77668711"));
         
         
         if(aDao.add(a)){
@@ -47,6 +48,14 @@ public class MainTeste {
         }else{
             System.out.println("nao foi possivel adicionar aluno");
         }
+        
+        
+        System.out.println("listagem:\n-----------------------");
+        for (Aluno al : aDao.get()) {
+            System.out.println(al.getNome()+"  "+al.getCpf());
+        }
+        System.out.println("-----------------------");
+        
         /*
         if(aDao.delete(a)){
             System.out.println("aluno 'deleted'");
