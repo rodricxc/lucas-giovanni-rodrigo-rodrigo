@@ -6,6 +6,7 @@ package controller;
 
 import controller.exceptions.NonexistentEntityException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,6 +15,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import model.pojo.Aluno;
+import model.pojo.Usuario;
 
 /**
  *
@@ -144,10 +146,18 @@ public class AlunoJpaController implements Serializable {
     
     public List<Aluno> getAlunoByNome(String nome) {
         EntityManager em = getEntityManager();
-        Query q = em.createQuery("SELECT * FROM ALUNO WHERE NOME='"+nome+"'");
-        List<Aluno> results = (List<Aluno>) q.getResultList();
-        
-        return results;
+        //Query q = em.createQuery("SELECT * FROM ALUNO WHERE NOME='"+nome+"'");
+        //List<Aluno> results = (List<Aluno>) q.getResultList();
+        Query query = em.createQuery("select a from Aluno a where a.nome like '"+
+                nome +"'");
+        return (List<Aluno>) query.getResultList();
+    }
+    
+    public List<Aluno> getAlunoByNomeAprox(String nome) {
+        EntityManager em = getEntityManager();
+        Query query = em.createQuery("select a from Aluno a where a.nome like '%"+
+                nome +"%'");
+        return (List<Aluno>) query.getResultList();
     }
     
     public Aluno findAluno(int id) {

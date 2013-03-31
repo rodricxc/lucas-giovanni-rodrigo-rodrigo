@@ -59,6 +59,11 @@ public class AlunoDaoImpl implements AlunoDao {
     public Aluno get(int id) {
         return jpaAluno.findAluno(id);
     }
+    
+    @Override
+    public List<Aluno> getAprox(String nome) {
+        return jpaAluno.getAlunoByNomeAprox(nome);
+    }
 
     @Override
     public List<Aluno> get(String nome) {

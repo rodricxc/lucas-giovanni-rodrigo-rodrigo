@@ -22,6 +22,7 @@ public interface AlunoDao {
     public boolean delete(Aluno aluno);
     public Aluno get(int id);
     public List<Aluno> get(String nome);
+    public List<Aluno> getAprox(String nome);
     public List<Aluno> get();
     public Aluno getCPF(String cpf);
     public void listar();
