@@ -25,9 +25,6 @@ public class AlunoDaoImpl implements AlunoDao {
     public static synchronized AlunoDao getInstance(){
         if (instance == null){
             instance = new AlunoDaoImpl();
-            System.out.println("criado nova instancia");
-        }else{
-            System.out.println("instancia ja criada");
         }
         return instance;
     }
@@ -54,7 +51,7 @@ public class AlunoDaoImpl implements AlunoDao {
         }
         return true;
     }
-
+ 
     @Override
     public Aluno get(int id) {
         return jpaAluno.findAluno(id);
@@ -76,8 +73,8 @@ public class AlunoDaoImpl implements AlunoDao {
     }
 
     @Override
-    public Aluno getCPF(String cpf) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Aluno> getCPF(String cpf) {
+        return jpaAluno.getAlunoByCPF(cpf);
     }
 
     @Override

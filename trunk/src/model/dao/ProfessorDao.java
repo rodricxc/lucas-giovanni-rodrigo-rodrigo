@@ -7,26 +7,28 @@ package model.dao;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import model.pojo.Aluno;
+
+import model.pojo.Professor;
 
 /**
  *
  * @author rodricxc
  */
-public interface AlunoDao {
+public interface ProfessorDao {
     static final String PERSISTENCE_UNIT_NAME = "LucasGiovanniRodrigoRodrigo";
     static EntityManagerFactory factory = 
            Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
     
-    public boolean add(Aluno aluno);
-    public boolean delete(Aluno aluno);
-    public Aluno get(int id);
-    public List<Aluno> get(String nome);
-    public List<Aluno> getAprox(String nome);
-    public List<Aluno> get();
-    public List<Aluno> getCPF(String cpf);
+    public void saveData();
+    public boolean add(Professor professor);
+    public boolean delete(Professor professor);
+    public Professor get(int id);
+    public List<Professor> get(String nome);
+    public List<Professor> get();
+    public Professor getCPF(String cpf);
     public void listar();
     public void clearAll();
     public boolean isEmpty();
     public boolean hasId(int id);
+    
 }
