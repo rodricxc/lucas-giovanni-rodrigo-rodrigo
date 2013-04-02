@@ -4,6 +4,11 @@
  */
 package view;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.pojo.Aluno;
+import model.pojo.Professor;
+
 /**
  *
  * @author rodricxc
@@ -15,9 +20,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
      */
     public JanelaPrincipal() {
         initComponents();
-        LoginDialog lDialog = new LoginDialog(this,true);
-        lDialog.setVisible(true);
-        user =  lDialog.getUser();
     }
 
     /**
@@ -29,53 +31,98 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        botaoSair = new javax.swing.JButton();
+        barraMenu = new javax.swing.JMenuBar();
+        menuUser = new javax.swing.JMenu();
+        itemTrocaUser = new javax.swing.JMenuItem();
+        itemSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Academico");
         setMinimumSize(new java.awt.Dimension(600, 400));
 
-        jMenu1.setText("Usuario");
-
-        jMenuItem1.setText("Trocar Usuario...");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        botaoSair.setText("Sair");
+        botaoSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                botaoSairActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
 
-        jMenuBar1.add(jMenu1);
+        menuUser.setText("Usuario");
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        itemTrocaUser.setText("Trocar Usuario...");
+        itemTrocaUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemTrocaUserActionPerformed(evt);
+            }
+        });
+        menuUser.add(itemTrocaUser);
 
-        setJMenuBar(jMenuBar1);
+        itemSair.setText("Sair");
+        itemSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemSairActionPerformed(evt);
+            }
+        });
+        menuUser.add(itemSair);
+
+        barraMenu.add(menuUser);
+
+        setJMenuBar(barraMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 582, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(486, Short.MAX_VALUE)
+                .addComponent(botaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(336, Short.MAX_VALUE)
+                .addComponent(botaoSair)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        new LoginDialog(this,true).setVisible(true);
-        
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void itemTrocaUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemTrocaUserActionPerformed
+        LoginDialog lDialog = new LoginDialog(this,true);
+        this.setVisible(false);
+        lDialog.setVisible(true);
+        this.setVisible(true);
+        if(user == null){
+            JanelaAdministrador jAdm = new JanelaAdministrador(this, true);
+            jAdm.setVisible(true);
+        }else if(user instanceof Aluno){
+            JanelaAluno janela  = new JanelaAluno(this, true, (Aluno) user);
+            janela.setVisible(true);
+            
+        }else if(user instanceof Professor){
+           // this.setVisible(false);
+        }else{
+            
+        }
+    }//GEN-LAST:event_itemTrocaUserActionPerformed
+
+    private void botaoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botaoSairActionPerformed
+
+    private void itemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_itemSairActionPerformed
 
     public Object getUser() {
         return user;
+    }
+
+    public void setUser(Object user) {
+        this.user = user;
     }
 
     /**
@@ -109,14 +156,16 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new JanelaPrincipal().setVisible(true);
+                
             }
         });
     }
     private Object user;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuBar barraMenu;
+    private javax.swing.JButton botaoSair;
+    private javax.swing.JMenuItem itemSair;
+    private javax.swing.JMenuItem itemTrocaUser;
+    private javax.swing.JMenu menuUser;
     // End of variables declaration//GEN-END:variables
 }
