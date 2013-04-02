@@ -4,8 +4,8 @@
  */
 package view;
 
-import controller.AlunoJpaController;
-import controller.ProfessorJpaController;
+import dataBaseConections.AlunoJpaController;
+import dataBaseConections.ProfessorJpaController;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

@@ -4,8 +4,8 @@
  */
 package model.dao;
 
-import controller.ProfessorJpaController;
-import controller.exceptions.NonexistentEntityException;
+import dataBaseConections.ProfessorJpaController;
+import dataBaseConections.exceptions.NonexistentEntityException;
 import java.util.List;
 import model.pojo.Professor;
 
