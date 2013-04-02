@@ -136,12 +136,12 @@ public class AlunoJpaController implements Serializable {
         }
     }
     
-    public Aluno getAlunoByCPF(String cpf) {
+    public List<Aluno> getAlunoByCPF(String cpf) {
         EntityManager em = getEntityManager();
-        Query q = em.createQuery("SELECT * FROM ALUNO WHERE CPF='"+cpf+"'");
-        List<Aluno> results = (List<Aluno>) q.getResultList();
+        Query q = em.createQuery("select a from Aluno a where a.cpf like '"+cpf+"'");
+       // List<Aluno> results = (List<Aluno>) q.getResultList();
         
-        return new Aluno("","");
+        return (List<Aluno>) q.getResultList();
     }
     
     public List<Aluno> getAlunoByNome(String nome) {
@@ -149,14 +149,14 @@ public class AlunoJpaController implements Serializable {
         //Query q = em.createQuery("SELECT * FROM ALUNO WHERE NOME='"+nome+"'");
         //List<Aluno> results = (List<Aluno>) q.getResultList();
         Query query = em.createQuery("select a from Aluno a where a.nome like '"+
-                nome +"'");
+                nome +"' order by a.nome");
         return (List<Aluno>) query.getResultList();
     }
     
     public List<Aluno> getAlunoByNomeAprox(String nome) {
         EntityManager em = getEntityManager();
         Query query = em.createQuery("select a from Aluno a where a.nome like '%"+
-                nome +"%'");
+                nome +"%'  order by a.nome");
         return (List<Aluno>) query.getResultList();
     }
     
