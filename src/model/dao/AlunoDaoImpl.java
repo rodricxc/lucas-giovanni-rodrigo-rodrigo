@@ -4,8 +4,8 @@
  */
 package model.dao;
 
-import controller.AlunoJpaController;
-import controller.exceptions.NonexistentEntityException;
+import dataBaseConections.AlunoJpaController;
+import dataBaseConections.exceptions.NonexistentEntityException;
 import java.util.List;
 import model.pojo.Aluno;
 
@@ -95,7 +95,7 @@ public class AlunoDaoImpl implements AlunoDao {
     @Override
     public boolean hasId(int id) {
         Aluno findAluno = jpaAluno.findAluno(new Long(id));
-        return (findAluno == null);
+        return !(findAluno == null);
     }
     
 }
