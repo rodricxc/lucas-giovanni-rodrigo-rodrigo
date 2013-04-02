@@ -18,7 +18,7 @@ public class AlunoDaoImpl implements AlunoDao {
     private static AlunoDaoImpl instance = null;
     
     private AlunoJpaController jpaAluno = null;
-    public AlunoDaoImpl() {
+    private AlunoDaoImpl() {
         jpaAluno = new AlunoJpaController(factory);        
     }
     
