@@ -4,7 +4,6 @@
  */
 package view;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.pojo.Aluno;
 
@@ -76,8 +75,13 @@ public class LoginDialog extends javax.swing.JDialog {
         grupoBotoes.add(administrador);
         administrador.setSelected(true);
         administrador.setText("Administrador");
+        administrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                administradorActionPerformed(evt);
+            }
+        });
 
-        botaoSair.setText("Sair");
+        botaoSair.setText("Cancelar");
         botaoSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoSairActionPerformed(evt);
@@ -134,11 +138,11 @@ public class LoginDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(botaoEntrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(administrador)
+                            .addComponent(jLabel6))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -165,17 +169,17 @@ public class LoginDialog extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(botaoSelecAluno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(botaoSelecProf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(administrador)
-                            .addComponent(jLabel6))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(botaoEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {botaoEntrar, botaoSair});
-
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {administrador, aluno, professor});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {botaoEntrar, botaoSair});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,11 +216,12 @@ public class LoginDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEntrarActionPerformed
-        // TODO add your handling code here:
+        ((JanelaPrincipal) this.getParent()).setUser(objetoRetorno);
+        this.dispose();
     }//GEN-LAST:event_botaoEntrarActionPerformed
 
     private void botaoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairActionPerformed
-        ((JFrame)this.getParent()).dispose();    
+        this.dispose();    
     }//GEN-LAST:event_botaoSairActionPerformed
 
     private void botaoSelecAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSelecAlunoActionPerformed
@@ -237,8 +242,17 @@ public class LoginDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_botaoSelecAlunoActionPerformed
 
+    private void administradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_administradorActionPerformed
+        objetoRetorno = null;
+    }//GEN-LAST:event_administradorActionPerformed
+
     public Object getUser(){
         return objetoRetorno;
+    };
+    
+    public void setUser(Object o){
+        objetoRetorno = o;
+        
     };
     
     
@@ -283,7 +297,7 @@ public class LoginDialog extends javax.swing.JDialog {
             }
         });
     }
-    private Object objetoRetorno;
+    private Object objetoRetorno = null;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton administrador;
     private javax.swing.JRadioButton aluno;
@@ -305,4 +319,5 @@ public class LoginDialog extends javax.swing.JDialog {
     private javax.swing.JTextField nomeProfText;
     private javax.swing.JRadioButton professor;
     // End of variables declaration//GEN-END:variables
+
 }
