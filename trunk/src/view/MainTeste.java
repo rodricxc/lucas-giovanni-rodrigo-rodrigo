@@ -11,6 +11,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import model.dao.AlunoDao;
 import model.dao.AlunoDaoImpl;
+import model.dao.ProfessorDao;
+import model.dao.ProfessorDaoImpl;
 import model.pojo.Aluno;
 import model.pojo.Professor;
 
@@ -33,7 +35,7 @@ public class MainTeste {
         
         
         AlunoDao aDao = AlunoDaoImpl.getInstance();
-        AlunoDao aDao2 = AlunoDaoImpl.getInstance();
+        ProfessorDao pDao = ProfessorDaoImpl.getInstance();
         
         aDao.add(new Aluno("rodogildo", "11111"));
         aDao.add(new Aluno("rodolfo", "11"));
@@ -42,6 +44,8 @@ public class MainTeste {
         aDao.add(new Aluno("gildo", "222"));
         aDao.add(new Aluno("carlos", "77668711"));
         
+        pDao.add(p);
+        System.out.println("->"+p);
         
         if(aDao.add(a)){
             System.out.println("aluno 'added'");

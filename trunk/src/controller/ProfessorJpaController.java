@@ -133,5 +133,27 @@ public class ProfessorJpaController implements Serializable {
             em.close();
         }
     }
+
+    public List<Professor> getProfessorByNomeAprox(String nome) {
+        EntityManager em = getEntityManager();
+        Query query = em.createQuery("select a from Professor a where a.nome"
+                + " like '%"+ nome +"%' order by a.nome");
+        return (List<Professor>) query.getResultList();
+    }
+    
+    public List<Professor> getProfessorByNome(String nome) {
+        EntityManager em = getEntityManager();
+        Query query = em.createQuery("select a from Professor a where a.nome"
+                + " like '"+ nome +"' order by a.nome");
+        return (List<Professor>) query.getResultList();
+    }
+
+    public List<Professor> getProfessorByCPF(String cpf) {
+        EntityManager em = getEntityManager();
+        Query q = em.createQuery("select a from Professor a where a.cpf like '"
+                +cpf+"'");
+        
+        return (List<Professor>) q.getResultList();
+    }
     
 }

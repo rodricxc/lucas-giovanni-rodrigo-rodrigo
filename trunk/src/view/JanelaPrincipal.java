@@ -15,6 +15,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
      */
     public JanelaPrincipal() {
         initComponents();
+        LoginDialog lDialog = new LoginDialog(this,true);
+        lDialog.setVisible(true);
+        user =  lDialog.getUser();
     }
 
     /**
@@ -71,6 +74,10 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    public Object getUser() {
+        return user;
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -105,6 +112,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             }
         });
     }
+    private Object user;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
