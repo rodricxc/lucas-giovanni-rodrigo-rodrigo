@@ -160,8 +160,6 @@ public class AlunoJpaController implements Serializable {
         return (List<Aluno>) query.getResultList();
     }
     
-    public Aluno findAluno(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
     
 }

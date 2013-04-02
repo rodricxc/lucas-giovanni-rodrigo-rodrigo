@@ -54,7 +54,7 @@ public class AlunoDaoImpl implements AlunoDao {
  
     @Override
     public Aluno get(int id) {
-        return jpaAluno.findAluno(id);
+        return jpaAluno.findAluno(new Long(id));
     }
     
     @Override
@@ -89,12 +89,13 @@ public class AlunoDaoImpl implements AlunoDao {
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (jpaAluno.getAlunoCount() == 0);
     }
 
     @Override
     public boolean hasId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Aluno findAluno = jpaAluno.findAluno(new Long(id));
+        return (findAluno == null);
     }
     
 }

@@ -19,13 +19,13 @@ public interface ProfessorDao {
     static EntityManagerFactory factory = 
            Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
     
-    public void saveData();
     public boolean add(Professor professor);
     public boolean delete(Professor professor);
     public Professor get(int id);
     public List<Professor> get(String nome);
+    public List<Professor> getAprox(String nome);
     public List<Professor> get();
-    public Professor getCPF(String cpf);
+    public List<Professor> getCPF(String cpf);
     public void listar();
     public void clearAll();
     public boolean isEmpty();
