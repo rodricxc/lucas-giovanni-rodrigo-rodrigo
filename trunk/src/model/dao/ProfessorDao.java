@@ -26,10 +26,6 @@ public interface ProfessorDao {
     public List<Professor> getAprox(String nome);
     public List<Professor> get();
     public List<Professor> getCPF(String cpf);
-    public void listar();
-    public void clearAll();
-    public boolean isEmpty();
-    public boolean hasId(int id);
 
     public boolean update(Professor professor);
     

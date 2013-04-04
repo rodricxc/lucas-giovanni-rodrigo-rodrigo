@@ -25,8 +25,6 @@ public interface AlunoDao {
     public List<Aluno> getAprox(String nome);
     public List<Aluno> get();
     public List<Aluno> getCPF(String cpf);
-    public void listar();
-    public void clearAll();
-    public boolean isEmpty();
-    public boolean hasId(int id);
+
+    public boolean update(Aluno aluno);
 }

@@ -30,6 +30,14 @@ public class Aluno extends Usuario implements Serializable {
             super(nome, cpf);
             this.alunoTurmas = new ArrayList<>();
     }
+    
+    public boolean addAlunoTurma(AlunoTurma alunoTurma) {
+        if (!this.alunoTurmas.contains(alunoTurma)) {
+            this.alunoTurmas.add(alunoTurma);
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public String toString() {

@@ -52,6 +52,22 @@ public class Turma implements Serializable {
         this.professor = professor;
     }
     
+    public boolean addAlunoTurma(AlunoTurma alunoTurma) {
+        if (!this.alunoTurmas.contains(alunoTurma)) {
+            this.alunoTurmas.add(alunoTurma);
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean addAtividade(Atividade atividade) {
+        if (!this.atividades.contains(atividade)) {
+            this.getAtividades().add(atividade);
+            return true;
+        }
+        return false;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -139,6 +155,17 @@ public class Turma implements Serializable {
     
     public Disciplina getDisciplina() {
         return disciplina;
+    }
+    
+    public List<AlunoTurma> getAlunoTurmas() {
+        return alunoTurmas;
+    }
+
+    /**
+     * @return the atividades
+     */
+    public List<Atividade> getAtividades() {
+        return atividades;
     }
 
 }

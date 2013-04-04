@@ -78,26 +78,6 @@ public class ProfessorDaoImpl implements ProfessorDao {
     }
 
     @Override
-    public void listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void clearAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return (jpaProf.getProfessorCount() == 0);
-    }
-
-    @Override
-    public boolean hasId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public boolean update(Professor professor) {
         return jpaProf.update(professor);
     }

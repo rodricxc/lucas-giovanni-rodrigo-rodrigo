@@ -78,24 +78,11 @@ public class AlunoDaoImpl implements AlunoDao {
     }
 
     @Override
-    public void listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void clearAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return (jpaAluno.getAlunoCount() == 0);
-    }
-
-    @Override
-    public boolean hasId(int id) {
-        Aluno findAluno = jpaAluno.findAluno(new Long(id));
-        return !(findAluno == null);
+    public boolean update(Aluno aluno) {
+        if (!jpaAluno.findAlunoEntities().contains(aluno)){
+            return false;
+        }
+        return jpaAluno.update(aluno);
     }
     
 }
