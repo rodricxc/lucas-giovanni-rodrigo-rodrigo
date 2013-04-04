@@ -11,6 +11,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import model.dao.AlunoDao;
 import model.dao.AlunoDaoImpl;
+import model.dao.AlunoTurmaDao;
+import model.dao.AlunoTurmaDaoImpl;
 import model.dao.DisciplinaDao;
 import model.dao.DisciplinaDaoImpl;
 import model.dao.ProfessorDao;
@@ -18,6 +20,7 @@ import model.dao.ProfessorDaoImpl;
 import model.dao.TurmaDao;
 import model.dao.TurmaDaoImpl;
 import model.pojo.Aluno;
+import model.pojo.AlunoTurma;
 import model.pojo.Disciplina;
 import model.pojo.Professor;
 import model.pojo.Turma;
@@ -33,31 +36,36 @@ public class MainTeste {
 
     public static void main(String args[]) {
         
-        ProfessorDao professorDao = ProfessorDaoImpl.getInstance();
-        Professor prof = new Professor("sdfg", "654", "dcomp");
-        professorDao.add(prof);
-        DisciplinaDao disciplinaDao = DisciplinaDaoImpl.getInstance();
-        Disciplina disc = new Disciplina("uyt", "- sdfg- dfg", 36);
-        disciplinaDao.add(disc);
-        
-        Disciplina disciplina = disciplinaDao.get().get(0);
-        System.out.println(disciplina.getNome());
-        Professor professor = professorDao.get().get(0);
-        System.out.println(professor.getNome());
+        AlunoDao alunoDao = AlunoDaoImpl.getInstance();
+        Aluno aluno = new Aluno("a", "1");
+        alunoDao.add(aluno);
+        aluno = new Aluno("b", "2");
+        alunoDao.add(aluno);
+        aluno = new Aluno("c", "3");
+        alunoDao.add(aluno);
+        aluno = new Aluno("d", "4");
+        alunoDao.add(aluno);
         
         TurmaDao turmaDao = TurmaDaoImpl.getInstance();
+        Turma turma = turmaDao.get().get(0);
+        aluno = alunoDao.get().get(0);
         
-        Turma turma = new Turma(2012, 2, "ctan", "15:25", 60, disciplina, professor);
-        turmaDao.add(turma);
+        AlunoTurmaDao alunoTurmaDao = AlunoTurmaDaoImpl.getInstance();
         
-        turma = turmaDao.get().get(0);
-        turma.setLocalAula("csa");
-        turmaDao.update(turma);
+        AlunoTurma alunoTurma = new AlunoTurma(turma, aluno);
+        
+        if (alunoTurmaDao.add(alunoTurma)) {
+            System.out.println("AlunoTurma Inserido");
+        } else {
+            System.out.println("AlunoTurma NÂO Inserido");
+        }
         
         System.out.println("listagem:\n-----------------------");
-        for (Professor p : professorDao.get()) {
-            System.out.println(p.getNome()+"  "+p.getTurmas().size());
+        for (AlunoTurma at : alunoTurmaDao.get()) {
+            System.out.println(at.getAluno().getNome()+"  "+at.getTurma().getLocalAula());
         }
+        turma = turmaDao.get().get(0);
+        System.out.println(turma.getAlunoTurma().size());
         System.out.println("-----------------------");
         
 /*
