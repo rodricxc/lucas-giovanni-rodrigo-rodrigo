@@ -91,7 +91,7 @@ public class Disciplina implements Serializable {
     
     @Override
     public String toString() {
-        return "model.dao.Disciplina[ id=" + id + " ]";
+        return " "+this.getNome()+" - "+(this.getCargaHoraria())+" horas";
     }
     
     public boolean addTurma(Turma turma) {

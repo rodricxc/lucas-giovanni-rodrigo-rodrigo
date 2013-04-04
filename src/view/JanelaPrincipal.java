@@ -29,7 +29,10 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        loginBotao = new javax.swing.JButton();
         botaoSair = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         barraMenu = new javax.swing.JMenuBar();
         menuUser = new javax.swing.JMenu();
         itemTrocaUser = new javax.swing.JMenuItem();
@@ -39,12 +42,54 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         setTitle("Sistema Academico");
         setMinimumSize(new java.awt.Dimension(600, 400));
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        loginBotao.setText("Login");
+        loginBotao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginBotaoActionPerformed(evt);
+            }
+        });
+
         botaoSair.setText("Sair");
         botaoSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoSairActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("Realize seu login:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(loginBotao, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {botaoSair, loginBotao});
+
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoSair)
+                    .addComponent(loginBotao))
+                .addContainerGap())
+        );
 
         menuUser.setText("Usuario");
 
@@ -72,17 +117,17 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(486, Short.MAX_VALUE)
-                .addComponent(botaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(175, 175, 175)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(192, 192, 192))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(336, Short.MAX_VALUE)
-                .addComponent(botaoSair)
-                .addContainerGap())
+                .addGap(98, 98, 98)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
         pack();
@@ -99,7 +144,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             janela.setVisible(true);
             
         }else if(user instanceof Professor){
-           // this.setVisible(false);
+            JanelaProfessor janela  = new JanelaProfessor(this, true, (Professor) user);
+            janela.setVisible(true);
         }else{
             
         }
@@ -112,6 +158,24 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private void itemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSairActionPerformed
         this.dispose();
     }//GEN-LAST:event_itemSairActionPerformed
+
+    private void loginBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBotaoActionPerformed
+        LoginDialog lDialog = new LoginDialog(this,true);
+        lDialog.setVisible(true);
+        if(user == null){
+            JanelaAdministrador jAdm = new JanelaAdministrador(this, true);
+            jAdm.setVisible(true);
+        }else if(user instanceof Aluno){
+            JanelaAluno janela  = new JanelaAluno(this, true, (Aluno) user);
+            janela.setVisible(true);
+            
+        }else if(user instanceof Professor){
+            JanelaProfessor janela  = new JanelaProfessor(this, true, (Professor) user);
+            janela.setVisible(true);
+        }else{
+            
+        }
+    }//GEN-LAST:event_loginBotaoActionPerformed
 
     public Object getUser() {
         return user;
@@ -162,6 +226,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton botaoSair;
     private javax.swing.JMenuItem itemSair;
     private javax.swing.JMenuItem itemTrocaUser;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton loginBotao;
     private javax.swing.JMenu menuUser;
     // End of variables declaration//GEN-END:variables
 }
