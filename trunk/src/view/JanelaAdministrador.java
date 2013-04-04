@@ -28,11 +28,11 @@ public class JanelaAdministrador extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        addAlunoEmTurma = new javax.swing.JButton();
+        addProfessor = new javax.swing.JButton();
+        addTurma = new javax.swing.JButton();
+        addDisciplina = new javax.swing.JButton();
+        addAluno = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
@@ -44,23 +44,33 @@ public class JanelaAdministrador extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Adicionar"));
 
-        jButton1.setText("Aluno em Turma");
+        addAlunoEmTurma.setText("Aluno em Turma");
 
-        jButton2.setText("Professor");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        addProfessor.setText("Professor");
+        addProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                addProfessorActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Turma");
-
-        jButton5.setText("Disciplina");
-
-        jButton6.setText("Aluno");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        addTurma.setText("Turma");
+        addTurma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                addTurmaActionPerformed(evt);
+            }
+        });
+
+        addDisciplina.setText("Disciplina");
+        addDisciplina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDisciplinaActionPerformed(evt);
+            }
+        });
+
+        addAluno.setText("Aluno");
+        addAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addAlunoActionPerformed(evt);
             }
         });
 
@@ -71,27 +81,27 @@ public class JanelaAdministrador extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(addAlunoEmTurma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addProfessor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addTurma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addDisciplina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addAluno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton6)
+                .addComponent(addAluno)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(addProfessor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(addDisciplina)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(addTurma)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addComponent(addAlunoEmTurma)
+                .addContainerGap(137, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Alterar Cadastros"));
@@ -139,7 +149,7 @@ public class JanelaAdministrador extends javax.swing.JDialog {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jButton4.setText("Sair");
+        jButton4.setText("Logout");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -186,19 +196,29 @@ public class JanelaAdministrador extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        CadastrarAluno cad = new CadastrarAluno(null, rootPaneCheckingEnabled);
+    private void addAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAlunoActionPerformed
+        CadastrarAluno cad = new CadastrarAluno(null, true);
         cad.setVisible(true);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_addAlunoActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        CadastrarProfessor cad = new CadastrarProfessor(null, rootPaneCheckingEnabled);
+    private void addProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProfessorActionPerformed
+        CadastrarProfessor cad = new CadastrarProfessor(null, true);
         cad.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_addProfessorActionPerformed
+
+    private void addDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDisciplinaActionPerformed
+        CadastrarDisciplina cad = new CadastrarDisciplina(null, true);
+        cad.setVisible(true);
+    }//GEN-LAST:event_addDisciplinaActionPerformed
+
+    private void addTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTurmaActionPerformed
+        CadastrarTurma cad = new CadastrarTurma(null, true);
+        cad.setVisible(true);
+    }//GEN-LAST:event_addTurmaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,12 +262,12 @@ public class JanelaAdministrador extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton addAluno;
+    private javax.swing.JButton addAlunoEmTurma;
+    private javax.swing.JButton addDisciplina;
+    private javax.swing.JButton addProfessor;
+    private javax.swing.JButton addTurma;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JPanel jPanel1;

@@ -6,6 +6,7 @@ package view;
 
 import javax.swing.JOptionPane;
 import model.pojo.Aluno;
+import model.pojo.Professor;
 
 /**
  *
@@ -103,6 +104,11 @@ public class LoginDialog extends javax.swing.JDialog {
         });
 
         botaoSelecProf.setText("Selecionar...");
+        botaoSelecProf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoSelecProfActionPerformed(evt);
+            }
+        });
 
         nomeProfText.setEditable(false);
         nomeProfText.setText("nome...");
@@ -245,6 +251,24 @@ public class LoginDialog extends javax.swing.JDialog {
     private void administradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_administradorActionPerformed
         objetoRetorno = null;
     }//GEN-LAST:event_administradorActionPerformed
+
+    private void botaoSelecProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSelecProfActionPerformed
+       SelecionarProfessor o;
+        o = new SelecionarProfessor(null, true);
+        o.setVisible(true);
+        Professor a = o.getProf();
+        
+        if(a!=null){
+            this.nomeProfText.setText(a.getNome());
+            this.cpfProfText.setText(a.getCpf());
+            this.nomeProfText.setEnabled(true);
+            this.cpfProfText.setEnabled(true);
+            this.professor.setSelected(true);
+            this.objetoRetorno = a; 
+        }else{
+            JOptionPane.showMessageDialog(null,"Nenhum Professor selecionado!");
+        }
+    }//GEN-LAST:event_botaoSelecProfActionPerformed
 
     public Object getUser(){
         return objetoRetorno;
