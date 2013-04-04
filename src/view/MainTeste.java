@@ -65,7 +65,7 @@ public class MainTeste {
             System.out.println(at.getAluno().getNome()+"  "+at.getTurma().getLocalAula());
         }
         turma = turmaDao.get().get(0);
-        System.out.println(turma.getAlunoTurma().size());
+        System.out.println(turma.getAlunoTurmas().size());
         System.out.println("-----------------------");
         
 /*
