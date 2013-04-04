@@ -132,5 +132,12 @@ public class Turma implements Serializable {
     public String toString() {
         return "model.dao.Turma[ id=" + id + " ]";
     }
+
+    public Professor getProfessor() {
+        return professor;
+    }
     
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
 }
