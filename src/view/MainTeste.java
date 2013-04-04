@@ -49,6 +49,7 @@ public class MainTeste {
         
         Atividade atividade = new Atividade("prova1", "prova", new GregorianCalendar(), 10, turma);
         
+        
         if (atividadeDao.add(atividade)) {
             System.out.println("Atividade Inserida");
         } else {
