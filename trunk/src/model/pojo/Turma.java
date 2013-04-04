@@ -146,7 +146,7 @@ public class Turma implements Serializable {
 
     @Override
     public String toString() {
-        return "model.dao.Turma[ id=" + id + " ]";
+        return "Turma: "+ getDisciplina().getNome()+" - "+ano+"/"+periodo+" prof: "+professor.getNome();
     }
 
     public Professor getProfessor() {
