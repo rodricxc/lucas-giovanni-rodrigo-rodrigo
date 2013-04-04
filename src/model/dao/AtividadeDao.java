@@ -22,8 +22,6 @@ public interface AtividadeDao {
     public boolean delete(Atividade atividade);
     public Atividade get(int id);
     public List<Atividade> get();
-    public void listar();
-    public void clearAll();
     public ArrayList<Atividade> getByTurma(Turma turma);
     public void listarPorTurma(Turma turma);
     public boolean hasId(int id);

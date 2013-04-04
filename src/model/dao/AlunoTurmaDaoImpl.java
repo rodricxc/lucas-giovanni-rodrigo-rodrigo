@@ -2,8 +2,11 @@ package model.dao;
 
 import dataBaseConections.AlunoTurmaJpaController;
 import dataBaseConections.exceptions.NonexistentEntityException;
+import java.util.ArrayList;
 import java.util.List;
+import model.pojo.Aluno;
 import model.pojo.AlunoTurma;
+import model.pojo.Turma;
 
 public class AlunoTurmaDaoImpl implements AlunoTurmaDao {
     
@@ -27,6 +30,14 @@ public class AlunoTurmaDaoImpl implements AlunoTurmaDao {
             return false;
         }else{
             jpaAlunoTurma.create(alunoTurma);
+            AlunoDao alunoDao = AlunoDaoImpl.getInstance();
+            Aluno aluno = alunoTurma.getAluno();
+            aluno.addAlunoTurma(alunoTurma);
+            alunoDao.update(aluno);
+            TurmaDao turmaDao = TurmaDaoImpl.getInstance();
+            Turma turma = alunoTurma.getTurma();
+            turma.addAlunoTurma(alunoTurma);
+            turmaDao.update(turma);
             return true;
         }
     }
@@ -50,23 +61,41 @@ public class AlunoTurmaDaoImpl implements AlunoTurmaDao {
     }
 
     @Override
-    public List<AlunoTurma> getByTurma(int turmaId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<AlunoTurma> getByAluno(Aluno aluno) {
+        List<AlunoTurma> lista = new ArrayList<>();
+        for (AlunoTurma alunoTurma : jpaAlunoTurma.findAlunoTurmaEntities()) {
+            if (alunoTurma.getAluno().equals(aluno)) {
+                lista.add(alunoTurma);
+            }
+        }
+        return lista;
     }
 
     @Override
-    public List<AlunoTurma> getByAluno(int alunoId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<AlunoTurma> getByTurma(Turma turma) {
+        List<AlunoTurma> lista = new ArrayList<>();
+        for (AlunoTurma alunoTurma : jpaAlunoTurma.findAlunoTurmaEntities()) {
+            if (alunoTurma.getTurma().equals(turma)) {
+                lista.add(alunoTurma);
+            }
+        }
+        return lista;
     }
 
     @Override
-    public AlunoTurma getByAmbos(int turmaId, int alunoId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public AlunoTurma getByAmbos(Turma turma, Aluno aluno) {
+        for (AlunoTurma alunoTurma : jpaAlunoTurma.findAlunoTurmaEntities()) {
+            if (alunoTurma.getAluno().equals(aluno) &&
+                    alunoTurma.getTurma().equals(turma)) {
+                return alunoTurma;
+            }
+        }
+        return null;
     }
 
     @Override
     public List<AlunoTurma> get() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return jpaAlunoTurma.findAlunoTurmaEntities();
     }
     
 }

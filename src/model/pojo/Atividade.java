@@ -33,6 +33,9 @@ public class Atividade implements Serializable {
     @ManyToOne
     private Turma turma;
 
+    public Atividade() {
+    }
+    
     public Atividade(String nome, String tipo, Calendar dataAtividade, float valor, Turma turma) {
         this.nome = nome;
         this.tipo = tipo;
@@ -41,21 +44,18 @@ public class Atividade implements Serializable {
         this.turma = turma;
     }
 
-    public Atividade() {
+    public Turma getTurma() {
+        return turma;
     }
     
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (getId() != null ? getId().hashCode() : 0);
         return hash;
     }
 
@@ -66,7 +66,7 @@ public class Atividade implements Serializable {
             return false;
         }
         Atividade other = (Atividade) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -74,7 +74,70 @@ public class Atividade implements Serializable {
 
     @Override
     public String toString() {
-        return "model.dao.Atividade[ id=" + id + " ]";
+        return "model.dao.Atividade[ id=" + getId() + " ]";
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    /**
+     * @return the dataAtividade
+     */
+    public Calendar getDataAtividade() {
+        return dataAtividade;
+    }
+
+    /**
+     * @param dataAtividade the dataAtividade to set
+     */
+    public void setDataAtividade(Calendar dataAtividade) {
+        this.dataAtividade = dataAtividade;
+    }
+
+    /**
+     * @return the valor
+     */
+    public float getValor() {
+        return valor;
+    }
+
+    /**
+     * @param valor the valor to set
+     */
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
+
+    /**
+     * @param turma the turma to set
+     */
+    public void setTurma(Turma turma) {
+        this.turma = turma;
     }
     
 }

@@ -27,13 +27,16 @@ public class NotaAtividade implements Serializable {
     private AlunoTurma alunoTurma; 
     private float nota;
 
-
+    public NotaAtividade() {
+    }
+    
+    public NotaAtividade(AlunoTurma alunoTurma, Atividade atividade) {
+        this.alunoTurma = alunoTurma;
+        this.atividade = atividade;
+    }
+    
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
@@ -59,6 +62,34 @@ public class NotaAtividade implements Serializable {
     @Override
     public String toString() {
         return "model.dao.NotaAtividade[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the atividade
+     */
+    public Atividade getAtividade() {
+        return atividade;
+    }
+
+    /**
+     * @return the alunoTurma
+     */
+    public AlunoTurma getAlunoTurma() {
+        return alunoTurma;
+    }
+
+    /**
+     * @return the nota
+     */
+    public float getNota() {
+        return nota;
+    }
+
+    /**
+     * @param nota the nota to set
+     */
+    public void setNota(float nota) {
+        this.nota = nota;
     }
     
 }

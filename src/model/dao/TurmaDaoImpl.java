@@ -67,21 +67,39 @@ public class TurmaDaoImpl implements TurmaDao {
 
     @Override
     public Turma get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return jpaTurma.findTurma(new Long(id));
     }
 
     @Override
     public List<Turma> get() {
         return jpaTurma.findTurmaEntities();
     }
+
     @Override
-    public List<Turma> getByDisciplinaAnoPeriodo(int disciplina, int ano, int periodo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Turma> getByDisciplinaAnoPeriodo(Disciplina disciplina, int ano, int periodo) {
+        List<Turma> lista = new ArrayList<>();
+        for (Turma turma : jpaTurma.findTurmaEntities()) {
+            if (turma.getDisciplina().equals(disciplina) && 
+                    turma.getAno() == ano && turma.getPeriodo() == periodo) {
+                lista.add(turma);
+            }
+        }
+        return lista;
     }
 
     @Override
-    public List<AlunoTurma> situacaoAluno(List<Turma> turmas, Disciplina disciplina, Aluno aluno) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<AlunoTurma> situacaoAluno(Disciplina disciplina, Aluno aluno) {
+        List<AlunoTurma> lista = new ArrayList<>();
+        for (Turma turma : jpaTurma.findTurmaEntities()) {
+            if (turma.getDisciplina().equals(disciplina)) {
+                for (AlunoTurma alunoTurma : turma.getAlunoTurmas()) {
+                    if (alunoTurma.getAluno().equals(aluno)) {
+                        lista.add(alunoTurma);
+                    }
+                }
+            }
+        }
+        return lista;
     }
 
     @Override
@@ -95,43 +113,19 @@ public class TurmaDaoImpl implements TurmaDao {
     }
 
     @Override
-    public void listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean addAluno(Aluno aluno, Turma turma) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<AlunoTurma> getByTurma(Turma turma) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void clearAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public List<Disciplina> disciplinasByList(List<Turma> turmas) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<Turma> getByProfessor(Professor professor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void listarPorProfessor(Professor professor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean hasId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Turma> getByProfessor(Professor professor) {
+        List<Turma> lista = new ArrayList<>();
+        for (Turma turma : jpaTurma.findTurmaEntities()) {
+            if (turma.getProfessor().equals(professor)) {
+                lista.add(turma);
+            }
+        }
+        return lista;
     }
 
     @Override

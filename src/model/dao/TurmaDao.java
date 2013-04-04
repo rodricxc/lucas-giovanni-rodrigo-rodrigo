@@ -23,18 +23,12 @@ public interface TurmaDao {
     public boolean delete(Turma turma);
     public Turma get(int id);
     public List<Turma> get();
-    public List<Turma> getByDisciplinaAnoPeriodo(int disciplina, int ano, int periodo);
-    public List<AlunoTurma> situacaoAluno(List<Turma> turmas, Disciplina disciplina, Aluno aluno);
+    public List<Turma> getByDisciplinaAnoPeriodo(Disciplina disciplina, int ano, int periodo);
+    public List<AlunoTurma> situacaoAluno(Disciplina disciplina, Aluno aluno);
     public int numeroOfertasPorDisciplina(int disciplina);
     public int numeroDisciplinasPorProfessor(int professor);
-    public void listar();
-    public boolean addAluno(Aluno aluno, Turma turma);
-    public ArrayList<AlunoTurma> getByTurma(Turma turma);
-    public void clearAll();
     public List<Disciplina> disciplinasByList(List<Turma> turmas);
-    public ArrayList<Turma> getByProfessor(Professor professor);
-    public void listarPorProfessor(Professor professor);
-    public boolean hasId(int id);
+    public List<Turma> getByProfessor(Professor professor);
 
     public boolean update(Turma turma);
 }

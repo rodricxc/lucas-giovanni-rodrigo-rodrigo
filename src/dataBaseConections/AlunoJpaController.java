@@ -160,6 +160,15 @@ public class AlunoJpaController implements Serializable {
         return (List<Aluno>) query.getResultList();
     }
     
-   
+    public boolean update(Aluno aluno) {
+        if (this.findAlunoEntities().contains(aluno)) {
+            EntityManager em = getEntityManager();
+            em.getTransaction().begin();
+            em.merge(aluno);
+            em.getTransaction().commit();
+            return true;
+        }
+        return false;
+    }
     
 }
