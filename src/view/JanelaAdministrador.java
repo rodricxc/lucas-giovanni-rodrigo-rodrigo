@@ -47,6 +47,11 @@ public class JanelaAdministrador extends javax.swing.JDialog {
         jButton1.setText("Aluno em Turma");
 
         jButton2.setText("Professor");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Turma");
 
@@ -86,7 +91,7 @@ public class JanelaAdministrador extends javax.swing.JDialog {
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Alterar Cadastros"));
@@ -189,6 +194,11 @@ public class JanelaAdministrador extends javax.swing.JDialog {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        CadastrarProfessor cad = new CadastrarProfessor(null, rootPaneCheckingEnabled);
+        cad.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
