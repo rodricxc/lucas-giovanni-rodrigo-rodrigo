@@ -38,6 +38,20 @@ public class Turma implements Serializable {
     @OneToMany(mappedBy = "turma")
     private List<Atividade> atividades;
 
+    public Turma() {
+    }
+
+    public Turma(int ano, int periodo, String local, String horario, int vagas,
+            Disciplina disciplina, Professor professor) {
+        this.ano = ano;
+        this.periodo = periodo;
+        this.localAula = local;
+        this.horario = horario;
+        this.vagas = vagas;
+        this.disciplina = disciplina;
+        this.professor = professor;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -93,6 +107,14 @@ public class Turma implements Serializable {
         this.vagas = vagas;
     }
 
+    public boolean addAluno(AlunoTurma alunoTurma) {
+        if (!alunoTurmas.contains(alunoTurma)) {
+            alunoTurmas.add(alunoTurma);
+            return true;
+        }
+        return false;
+    }
+    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
