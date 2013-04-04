@@ -6,6 +6,7 @@ package view;
 
 import dataBaseConections.AlunoJpaController;
 import dataBaseConections.ProfessorJpaController;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -13,6 +14,8 @@ import model.dao.AlunoDao;
 import model.dao.AlunoDaoImpl;
 import model.dao.AlunoTurmaDao;
 import model.dao.AlunoTurmaDaoImpl;
+import model.dao.AtividadeDao;
+import model.dao.AtividadeDaoImpl;
 import model.dao.DisciplinaDao;
 import model.dao.DisciplinaDaoImpl;
 import model.dao.ProfessorDao;
@@ -21,6 +24,7 @@ import model.dao.TurmaDao;
 import model.dao.TurmaDaoImpl;
 import model.pojo.Aluno;
 import model.pojo.AlunoTurma;
+import model.pojo.Atividade;
 import model.pojo.Disciplina;
 import model.pojo.Professor;
 import model.pojo.Turma;
@@ -35,34 +39,26 @@ public class MainTeste {
            Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 
     public static void main(String args[]) {
-        
-        AlunoDao alunoDao = AlunoDaoImpl.getInstance();
-        Aluno aluno = new Aluno("a", "1");
-        alunoDao.add(aluno);
-        aluno = new Aluno("b", "2");
-        alunoDao.add(aluno);
-        aluno = new Aluno("c", "3");
-        alunoDao.add(aluno);
-        aluno = new Aluno("d", "4");
-        alunoDao.add(aluno);
-        
+                
+        ProfessorDao professorDao = ProfessorDaoImpl.getInstance();
+        Professor professor = professorDao.get().get(0);
         TurmaDao turmaDao = TurmaDaoImpl.getInstance();
-        Turma turma = turmaDao.get().get(0);
-        aluno = alunoDao.get().get(0);
+        Turma turma = professor.getTurmas().get(0);
         
-        AlunoTurmaDao alunoTurmaDao = AlunoTurmaDaoImpl.getInstance();
+        AtividadeDao atividadeDao = AtividadeDaoImpl.getInstance();
         
-        AlunoTurma alunoTurma = new AlunoTurma(turma, aluno);
+        Atividade atividade = new Atividade("prova1", "prova", new GregorianCalendar(), 10, turma);
         
-        if (alunoTurmaDao.add(alunoTurma)) {
-            System.out.println("AlunoTurma Inserido");
+        if (atividadeDao.add(atividade)) {
+            System.out.println("Atividade Inserida");
         } else {
-            System.out.println("AlunoTurma NÂO Inserido");
+            System.out.println("Atividade NÂO Inserida");
         }
-        
+        System.out.println(turma.getAtividades().size());
+        /*
         System.out.println("listagem:\n-----------------------");
-        for (AlunoTurma at : alunoTurmaDao.get()) {
-            System.out.println(at.getAluno().getNome()+"  "+at.getTurma().getLocalAula());
+        for (Turma t : alunoTurmaDao.get()) {
+            System.out.println(t.getAtividades().size());
         }
         turma = turmaDao.get().get(0);
         System.out.println(turma.getAlunoTurmas().size());
