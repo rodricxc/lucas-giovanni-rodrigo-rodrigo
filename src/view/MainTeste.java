@@ -11,10 +11,16 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import model.dao.AlunoDao;
 import model.dao.AlunoDaoImpl;
+import model.dao.DisciplinaDao;
+import model.dao.DisciplinaDaoImpl;
 import model.dao.ProfessorDao;
 import model.dao.ProfessorDaoImpl;
+import model.dao.TurmaDao;
+import model.dao.TurmaDaoImpl;
 import model.pojo.Aluno;
+import model.pojo.Disciplina;
 import model.pojo.Professor;
+import model.pojo.Turma;
 
 /**
  *
@@ -26,42 +32,44 @@ public class MainTeste {
            Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 
     public static void main(String args[]) {
-        Aluno a = new Aluno("rodrigo", "131");
-        Professor p = new Professor("poo","2123","comp");
-        List<Aluno> lista;
-        List<Professor> lista2;
         
+        ProfessorDao professorDao = ProfessorDaoImpl.getInstance();
+        DisciplinaDao disciplinaDao = DisciplinaDaoImpl.getInstance();
         
+        Disciplina disciplina = disciplinaDao.get().get(0);
+        System.out.println(disciplina.getNome());
+        Professor professor = professorDao.get().get(0);
+        System.out.println(professor.getNome());
         
+        TurmaDao turmaDao = TurmaDaoImpl.getInstance();
         
-        AlunoDao aDao = AlunoDaoImpl.getInstance();
-        ProfessorDao pDao = ProfessorDaoImpl.getInstance();
+        Turma turma = new Turma(2012, 2, "ctan", "15:25", 60, disciplina, professor);
+        turmaDao.add(turma);
         
-        aDao.add(new Aluno("rodogildo", "11111"));
-        aDao.add(new Aluno("rodolfo", "11"));
-        aDao.add(new Aluno("carlosrod", "2211"));
-        aDao.add(new Aluno("rodrigo", "21"));
-        aDao.add(new Aluno("gildo", "222"));
-        aDao.add(new Aluno("carlos", "77668711"));
+        turma = turmaDao.get().get(0);
+        turma.setLocalAula("ctan");
+        System.out.println(turmaDao.get().get(0).getLocalAula());
         
-        pDao.add(p);
-        System.out.println("->"+p);
+/*
+        disciplinaDao.add(new Disciplina("GA", "- 1234; -4321; -11", 72));
+        disciplinaDao.add(new Disciplina("AOC", "- 11; - poiu", 72));
         
-        if(aDao.add(a)){
-            System.out.println("aluno 'added'");
-        }else{
-            System.out.println("nao foi possivel adicionar aluno");
+        if (disciplinaDao.add(a)){
+            System.out.println("disciplina 'added'");
+        } else {
+            System.out.println("nao foi possivel adicionar disciplina");
         }
-        
-        
+  
+  */
+        /*
         System.out.println("listagem:\n-----------------------");
-        for (Aluno al : aDao.get()) {
-            System.out.println(al.getNome()+"  "+al.getCpf());
+        for (Disciplina d : disciplinaDao.get()) {
+            System.out.println(d.getNome()+"  "+d.getEmenta()+"  "+d.getEmenta());
         }
         System.out.println("-----------------------");
         
-        /*
-        if(aDao.delete(a)){
+        
+        if(disciplinaDao.delete(disciplinaDao.get().get(0))){
             System.out.println("aluno 'deleted'");
         }else{
             System.out.println("nao foi possivel deletar aluno");
