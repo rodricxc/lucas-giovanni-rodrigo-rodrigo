@@ -7,6 +7,9 @@ package model.pojo;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 /**
@@ -15,7 +18,11 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Professor extends Usuario implements Serializable {
-
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    
     public String getDepartamento() {
         return departamento;
     }
@@ -37,16 +44,28 @@ public class Professor extends Usuario implements Serializable {
         super(nome, cpf);
         this.departamento = departamento;
     }
-    /**
-    * Converte o objeto para uma string de modo que ele possa ser 
-    * reconstruido com os mesmos valores
-    * 
-    * Usado na escrita em arquivo
-    */
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
 
     @Override
     public String toString() {
         return "model.dao.Professor[ id=" + getId() + " ]";
     }
-    
+
+    public boolean addTurma(Turma turma) {
+        if (!this.turmas.contains(turma)) {
+            this.turmas.add(turma);
+            return true;
+        }
+        return false;
+    }
+   
+    public List<Turma> getTurmas() {
+        return this.turmas;
+    }
 }

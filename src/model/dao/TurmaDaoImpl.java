@@ -38,8 +38,16 @@ public class TurmaDaoImpl implements TurmaDao {
     public boolean add(Turma turma) {
         if(jpaTurma.findTurmaEntities().contains(turma)){
             return false;
-        }else{
+        } else {
             jpaTurma.create(turma);
+            ProfessorDao professorDao = ProfessorDaoImpl.getInstance();
+            Professor professor = turma.getProfessor();
+            professor.addTurma(turma);
+            professorDao.update(professor);
+            DisciplinaDao disciplinaDao = DisciplinaDaoImpl.getInstance();
+            Disciplina disciplina = turma.getDisciplina();
+            disciplina.addTurma(turma);
+            disciplinaDao.update(disciplina);
             return true;
         }
     }
@@ -124,6 +132,14 @@ public class TurmaDaoImpl implements TurmaDao {
     @Override
     public boolean hasId(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean update(Turma turma) {
+        if (!jpaTurma.findTurmaEntities().contains(turma)){
+            return false;
+        }
+        return jpaTurma.update(turma);
     }
     
 }

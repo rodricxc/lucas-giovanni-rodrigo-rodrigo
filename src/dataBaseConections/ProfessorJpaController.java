@@ -155,5 +155,16 @@ public class ProfessorJpaController implements Serializable {
         
         return (List<Professor>) q.getResultList();
     }
+
+    public boolean update(Professor professor) {
+        if (this.findProfessorEntities().contains(professor)) {
+            EntityManager em = getEntityManager();
+            em.getTransaction().begin();
+            em.merge(professor);
+            em.getTransaction().commit();
+            return true;
+        }
+        return false;
+    }
     
 }

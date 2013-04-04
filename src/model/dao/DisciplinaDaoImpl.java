@@ -8,6 +8,7 @@ import dataBaseConections.DisciplinaJpaController;
 import dataBaseConections.exceptions.NonexistentEntityException;
 import java.util.List;
 import model.pojo.Disciplina;
+import model.pojo.Turma;
 
 /**
  *aluno
@@ -34,6 +35,11 @@ public class DisciplinaDaoImpl implements DisciplinaDao {
         if (jpaDisciplina.findDisciplinaEntities().contains(disciplina)){
             return false;
         } else {
+            for (Disciplina d : jpaDisciplina.findDisciplinaEntities()) {
+                if (d.getNome().equals(disciplina.getNome())) {
+                    return false;
+                }
+            }
             jpaDisciplina.create(disciplina);
             return true;
         }
@@ -61,5 +67,10 @@ public class DisciplinaDaoImpl implements DisciplinaDao {
     public List<Disciplina> get() {
         return jpaDisciplina.findDisciplinaEntities();
     }
-    
+
+    @Override
+    public boolean update(Disciplina disciplina) {
+        return jpaDisciplina.update(disciplina);
+    }
+
 }

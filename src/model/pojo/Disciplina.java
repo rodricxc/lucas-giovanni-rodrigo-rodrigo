@@ -69,8 +69,8 @@ public class Disciplina implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.id);
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -94,4 +94,11 @@ public class Disciplina implements Serializable {
         return "model.dao.Disciplina[ id=" + id + " ]";
     }
     
+    public boolean addTurma(Turma turma) {
+        if (!this.turmas.contains(turma)) {
+            this.turmas.add(turma);
+            return true;
+        }
+        return false;
+    }
 }

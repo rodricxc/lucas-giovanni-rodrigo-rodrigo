@@ -33,7 +33,8 @@ public class ProfessorDaoImpl implements ProfessorDao {
     public boolean add(Professor professor) {
         if(jpaProf.findProfessorEntities().contains(professor)){
             return false;
-        }else{
+        } else {
+            
             jpaProf.create(professor);
             return true;
         }
@@ -94,6 +95,11 @@ public class ProfessorDaoImpl implements ProfessorDao {
     @Override
     public boolean hasId(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean update(Professor professor) {
+        return jpaProf.update(professor);
     }
     
 }

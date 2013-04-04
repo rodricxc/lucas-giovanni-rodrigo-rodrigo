@@ -133,5 +133,16 @@ public class TurmaJpaController implements Serializable {
             em.close();
         }
     }
+
+    public boolean update(Turma turma) {
+        if (this.findTurmaEntities().contains(turma)) {
+            EntityManager em = getEntityManager();
+            em.getTransaction().begin();
+            em.merge(turma);
+            em.getTransaction().commit();
+            return true;
+        }
+        return false;
+    }
     
 }
