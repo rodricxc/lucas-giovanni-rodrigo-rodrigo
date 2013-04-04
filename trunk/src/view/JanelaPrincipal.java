@@ -90,9 +90,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
     private void itemTrocaUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemTrocaUserActionPerformed
         LoginDialog lDialog = new LoginDialog(this,true);
-        this.setVisible(false);
         lDialog.setVisible(true);
-        this.setVisible(true);
         if(user == null){
             JanelaAdministrador jAdm = new JanelaAdministrador(this, true);
             jAdm.setVisible(true);
