@@ -30,5 +30,7 @@ public interface ProfessorDao {
     public void clearAll();
     public boolean isEmpty();
     public boolean hasId(int id);
+
+    public boolean update(Professor professor);
     
 }

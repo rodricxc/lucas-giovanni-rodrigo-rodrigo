@@ -14,6 +14,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import model.pojo.Disciplina;
+import model.pojo.Turma;
 
 /**
  *
@@ -132,6 +133,17 @@ public class DisciplinaJpaController implements Serializable {
         } finally {
             em.close();
         }
+    }
+
+    public boolean update(Disciplina disciplina) {
+        if (this.findDisciplinaEntities().contains(disciplina)) {
+            EntityManager em = getEntityManager();
+            em.getTransaction().begin();
+            em.merge(disciplina);
+            em.getTransaction().commit();
+            return true;
+        }
+        return false;
     }
     
 }

@@ -34,10 +34,10 @@ public class MainTeste {
     public static void main(String args[]) {
         
         ProfessorDao professorDao = ProfessorDaoImpl.getInstance();
-        Professor prof = new Professor("asdf", "987", "dcomp");
+        Professor prof = new Professor("sdfg", "654", "dcomp");
         professorDao.add(prof);
         DisciplinaDao disciplinaDao = DisciplinaDaoImpl.getInstance();
-        Disciplina disc = new Disciplina("aeds", "zcxjv", 72);
+        Disciplina disc = new Disciplina("uyt", "- sdfg- dfg", 36);
         disciplinaDao.add(disc);
         
         Disciplina disciplina = disciplinaDao.get().get(0);
@@ -52,7 +52,13 @@ public class MainTeste {
         
         turma = turmaDao.get().get(0);
         turma.setLocalAula("csa");
-        System.out.println(turmaDao.get().get(0).getLocalAula());
+        turmaDao.update(turma);
+        
+        System.out.println("listagem:\n-----------------------");
+        for (Professor p : professorDao.get()) {
+            System.out.println(p.getNome()+"  "+p.getTurmas().size());
+        }
+        System.out.println("-----------------------");
         
 /*
         disciplinaDao.add(new Disciplina("GA", "- 1234; -4321; -11", 72));

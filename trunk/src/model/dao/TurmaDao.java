@@ -35,4 +35,6 @@ public interface TurmaDao {
     public ArrayList<Turma> getByProfessor(Professor professor);
     public void listarPorProfessor(Professor professor);
     public boolean hasId(int id);
+
+    public boolean update(Turma turma);
 }

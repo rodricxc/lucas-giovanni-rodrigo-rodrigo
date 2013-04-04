@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import model.pojo.Disciplina;
+import model.pojo.Turma;
 
 public interface DisciplinaDao {
     static final String PERSISTENCE_UNIT_NAME = "LucasGiovanniRodrigoRodrigo";
@@ -18,4 +19,6 @@ public interface DisciplinaDao {
     public boolean delete(Disciplina disciplina);
     public Disciplina get(int id);
     public List<Disciplina> get();
+
+    public boolean update(Disciplina disciplina);
 }
