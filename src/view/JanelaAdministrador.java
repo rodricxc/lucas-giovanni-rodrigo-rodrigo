@@ -45,6 +45,11 @@ public class JanelaAdministrador extends javax.swing.JDialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Adicionar"));
 
         addAlunoEmTurma.setText("Aluno em Turma");
+        addAlunoEmTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addAlunoEmTurmaActionPerformed(evt);
+            }
+        });
 
         addProfessor.setText("Professor");
         addProfessor.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +106,7 @@ public class JanelaAdministrador extends javax.swing.JDialog {
                 .addComponent(addTurma)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addAlunoEmTurma)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Alterar Cadastros"));
@@ -219,6 +224,11 @@ public class JanelaAdministrador extends javax.swing.JDialog {
         CadastrarTurma cad = new CadastrarTurma(null, true);
         cad.setVisible(true);
     }//GEN-LAST:event_addTurmaActionPerformed
+
+    private void addAlunoEmTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAlunoEmTurmaActionPerformed
+        CadastrarAlunoTurma cad = new CadastrarAlunoTurma(null, true);
+        cad.setVisible(true);
+    }//GEN-LAST:event_addAlunoEmTurmaActionPerformed
 
     /**
      * @param args the command line arguments

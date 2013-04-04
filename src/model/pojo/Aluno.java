@@ -41,7 +41,7 @@ public class Aluno extends Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "model.dao.Aluno[ id=" + getId() + " ]";
+        return this.nome+" - cpf: "+this.cpf;
     }
     
 }
