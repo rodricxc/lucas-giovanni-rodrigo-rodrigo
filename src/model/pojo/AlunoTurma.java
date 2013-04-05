@@ -61,6 +61,10 @@ public class AlunoTurma implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public void setFaltas(int faltas) {
+        this.faltas = faltas;
+    }
     
     public Aluno getAluno() {
         return aluno;

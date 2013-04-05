@@ -15,6 +15,7 @@ public interface AlunoTurmaDao {
     
     public boolean add(AlunoTurma alunoTurma);
     public boolean delete(AlunoTurma alunoTurma);
+    public boolean update(AlunoTurma alunoTurma);
     public AlunoTurma get(int id);
     public List<AlunoTurma> getByTurma(Turma turma);
     public List<AlunoTurma> getByAluno(Aluno aluno);

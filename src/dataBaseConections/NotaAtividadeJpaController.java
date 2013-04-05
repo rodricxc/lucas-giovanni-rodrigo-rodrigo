@@ -133,5 +133,15 @@ public class NotaAtividadeJpaController implements Serializable {
             em.close();
         }
     }
+    public boolean update(NotaAtividade na) {
+        if (this.findNotaAtividadeEntities().contains(na)) {
+            EntityManager em = getEntityManager();
+            em.getTransaction().begin();
+            em.merge(na);
+            em.getTransaction().commit();
+            return true;
+        }
+        return false;
+    }
     
 }

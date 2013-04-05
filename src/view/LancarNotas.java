@@ -6,10 +6,13 @@ package view;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import model.dao.AlunoDao;
+import model.dao.AlunoDaoImpl;
 import model.dao.NotaAtividadeDao;
 import model.dao.NotaAtividadeDaoImpl;
 import model.dao.TurmaDao;
 import model.dao.TurmaDaoImpl;
+import model.pojo.Aluno;
 import model.pojo.Atividade;
 import model.pojo.NotaAtividade;
 import model.pojo.Professor;
@@ -22,6 +25,7 @@ import model.pojo.Turma;
 public class LancarNotas extends javax.swing.JDialog {
     private Professor professor;
     TurmaDao tDao = TurmaDaoImpl.getInstance();
+    private List<NotaAtividade> listaAtual;
     
     /**
      * Creates new form LancarNotas
@@ -38,6 +42,7 @@ public class LancarNotas extends javax.swing.JDialog {
         for (Object o : tDao.getByProfessor(professor)) {
             comboTurma.addItem(o);
         }
+        comboAtividade.removeAllItems();
         Turma ob = (Turma)comboTurma.getSelectedItem();
         for (Atividade at : ob.getAtividades()) {
             comboAtividade.addItem(at);
@@ -95,7 +100,7 @@ public class LancarNotas extends javax.swing.JDialog {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, true
@@ -111,13 +116,18 @@ public class LancarNotas extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tabela);
 
-        jLabel3.setText("Caso a turma ou atividade seja alterada, as notas sao salvas automaticamente");
+        jLabel3.setText("As notas NAO serão salvas automaticamente se voce alterar os campos acima ");
 
         jLabel4.setText("Valor Max:");
 
         campoValor.setEditable(false);
 
         jButton1.setText("Atualizar Notas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Voltar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -193,26 +203,32 @@ public class LancarNotas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTurmaActionPerformed
-        comboTurma.removeAllItems();
-        for (Object o : tDao.getByProfessor(professor)) {
-            comboTurma.addItem(o);
-        }
+        //  salvar();
+        
         comboAtividade.removeAllItems();
-        Turma ob = (Turma)comboTurma.getSelectedItem();
+        Turma ob = (Turma) comboTurma.getSelectedItem();
         for (Atividade at : ob.getAtividades()) {
             comboAtividade.addItem(at);
         }
+        NotaAtividadeDao naDao = NotaAtividadeDaoImpl.getInstance();
+        listaAtual = naDao.getByAtividade(atividade);
         atualizarTabela();
     }//GEN-LAST:event_comboTurmaActionPerformed
 
     private void comboAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAtividadeActionPerformed
+        //  salvar();
         atualizarTabela();
     }//GEN-LAST:event_comboAtividadeActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        salvar();
+        //salvar();
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+          salvar();
+          atualizarTabela();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,10 +299,12 @@ public class LancarNotas extends javax.swing.JDialog {
         Object[] linha = new Object[3];
 
         model.setRowCount(0);
- 
+        
+        AlunoDao aDao = AlunoDaoImpl.getInstance();
         List<NotaAtividade> lista = naDao.getByAtividade(atividade);
+        listaAtual = lista;
         for (NotaAtividade na : lista) {
-           
+             
              linha[0] = na.getAlunoTurma().getAluno().getNome();
              linha[1] = na.getAlunoTurma().getAluno().getCpf();
              linha[2] = na.getNota();
@@ -297,6 +315,27 @@ public class LancarNotas extends javax.swing.JDialog {
     }
 
     private void salvar() {
-       
+        NotaAtividadeDao naDao = NotaAtividadeDaoImpl.getInstance();
+        int i = 0;
+        for (NotaAtividade notaAtividade : listaAtual) {
+            try{
+                Float valor;
+                valor = (Float) tabela.getValueAt(i, 2);
+                
+                if (valor >= atividade.getValor()){
+                    notaAtividade.setNota(atividade.getValor());
+                    naDao.update(notaAtividade);
+                }else if (valor <= 0){
+                    notaAtividade.setNota(0);
+                    naDao.update(notaAtividade);
+                }else{
+                    notaAtividade.setNota(valor.floatValue());
+                    naDao.update(notaAtividade);
+                }
+                i+=1;
+            }catch(Exception e){
+                
+            }
+        }
     }
 }

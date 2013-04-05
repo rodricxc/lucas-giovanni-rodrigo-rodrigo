@@ -133,5 +133,14 @@ public class AlunoTurmaJpaController implements Serializable {
             em.close();
         }
     }
-    
+    public boolean update(AlunoTurma alunoTurma) {
+        if (this.findAlunoTurmaEntities().contains(alunoTurma)) {
+            EntityManager em = getEntityManager();
+            em.getTransaction().begin();
+            em.merge(alunoTurma);
+            em.getTransaction().commit();
+            return true;
+        }
+        return false;
+    }
 }
