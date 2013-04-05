@@ -25,8 +25,8 @@ public interface TurmaDao {
     public List<Turma> get();
     public List<Turma> getByDisciplinaAnoPeriodo(Disciplina disciplina, int ano, int periodo);
     public List<AlunoTurma> situacaoAluno(Disciplina disciplina, Aluno aluno);
-    public int numeroOfertasPorDisciplina(int disciplina);
-    public int numeroDisciplinasPorProfessor(int professor);
+    public int numeroOfertasPorDisciplina(Disciplina disciplina);
+    public int numeroDisciplinasPorProfessor(Professor professor);
     public List<Disciplina> disciplinasByList(List<Turma> turmas);
     public List<Turma> getByProfessor(Professor professor);
 
