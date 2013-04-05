@@ -70,10 +70,5 @@ public class NotaAtividadeDaoImpl implements NotaAtividadeDao {
         }
         return retorno;
     }
-
-    @Override
-    public void clearAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }
