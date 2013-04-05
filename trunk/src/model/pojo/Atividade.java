@@ -6,6 +6,7 @@ package model.pojo;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -54,27 +55,47 @@ public class Atividade implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (getId() != null ? getId().hashCode() : 0);
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.nome);
+        hash = 97 * hash + Objects.hashCode(this.tipo);
+        hash = 97 * hash + Objects.hashCode(this.dataAtividade);
+        hash = 97 * hash + Float.floatToIntBits(this.valor);
+        hash = 97 * hash + Objects.hashCode(this.turma);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Atividade)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Atividade other = (Atividade) object;
-        if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Atividade other = (Atividade) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.tipo, other.tipo)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataAtividade, other.dataAtividade)) {
+            return false;
+        }
+        if (Float.floatToIntBits(this.valor) != Float.floatToIntBits(other.valor)) {
+            return false;
+        }
+        if (!Objects.equals(this.turma, other.turma)) {
             return false;
         }
         return true;
     }
 
+    
+
     @Override
     public String toString() {
-        return "model.dao.Atividade[ id=" + getId() + " ]";
+        return getNome()+"("+getTipo()+")";
     }
 
     /**

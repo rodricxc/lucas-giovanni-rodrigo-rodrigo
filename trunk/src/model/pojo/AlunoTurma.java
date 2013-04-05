@@ -7,6 +7,7 @@ package model.pojo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -71,30 +72,31 @@ public class AlunoTurma implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.turma);
+        hash = 29 * hash + Objects.hashCode(this.aluno);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof AlunoTurma)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        AlunoTurma other = (AlunoTurma) object;
-        if (this.id == null && other.id != null) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        if (!this.aluno.getId().equals(other.getAluno().getId()) ||
-                !this.turma.getId().equals(other.getTurma().getId())) {
+        final AlunoTurma other = (AlunoTurma) obj;
+        if (!Objects.equals(this.turma, other.turma)) {
             return false;
         }
-        if (this.id != null && !this.id.equals(other.id)) {
+        if (!Objects.equals(this.aluno, other.aluno)) {
             return false;
         }
         return true;
     }
+
+    
 
     @Override
     public String toString() {
