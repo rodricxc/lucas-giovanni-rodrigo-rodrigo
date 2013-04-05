@@ -97,5 +97,10 @@ public class AlunoTurmaDaoImpl implements AlunoTurmaDao {
     public List<AlunoTurma> get() {
         return jpaAlunoTurma.findAlunoTurmaEntities();
     }
+
+    @Override
+    public boolean update(AlunoTurma alunoTurma) {
+        return jpaAlunoTurma.update(alunoTurma);
+    }
     
 }

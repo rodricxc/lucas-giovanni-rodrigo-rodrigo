@@ -17,6 +17,7 @@ public interface NotaAtividadeDao {
     
     public boolean add(NotaAtividade registroAtividade);
     public boolean delete(NotaAtividade registroAtividade);
+    public boolean update(NotaAtividade registroAtividade);
     public NotaAtividade getById(int id);
     public List<NotaAtividade> getByAtividade(Atividade atividade);
 }

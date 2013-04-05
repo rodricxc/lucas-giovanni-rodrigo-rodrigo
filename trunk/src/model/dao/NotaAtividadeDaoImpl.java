@@ -70,5 +70,10 @@ public class NotaAtividadeDaoImpl implements NotaAtividadeDao {
         }
         return retorno;
     }
+
+    @Override
+    public boolean update(NotaAtividade registroAtividade) {
+        return jpaNotaAtividade.update(registroAtividade);
+    }
     
 }

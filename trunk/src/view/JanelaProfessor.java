@@ -197,7 +197,8 @@ public class JanelaProfessor extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void botaoLancarFaltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLancarFaltasActionPerformed
-        // TODO add your handling code here:
+        LancarFaltas lf  = new LancarFaltas(null, true, professor);
+        lf.setVisible(true);
     }//GEN-LAST:event_botaoLancarFaltasActionPerformed
 
     /**
