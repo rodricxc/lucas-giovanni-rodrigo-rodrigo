@@ -103,13 +103,27 @@ public class TurmaDaoImpl implements TurmaDao {
     }
 
     @Override
-    public int numeroOfertasPorDisciplina(int disciplina) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int numeroOfertasPorDisciplina(Disciplina disciplina) {
+        int numero = 0;
+        for (Turma turma : jpaTurma.findTurmaEntities()) {
+            if (turma.getDisciplina().equals(disciplina)) {
+                numero++;
+            }
+        }
+        return numero;
     }
 
     @Override
-    public int numeroDisciplinasPorProfessor(int professor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int numeroDisciplinasPorProfessor(Professor professor) {
+        List<Disciplina> disciplinasDoProfessor = new ArrayList<>();
+        for (Turma turma : jpaTurma.findTurmaEntities()) {
+            if (turma.getProfessor().equals(professor)) {
+                if (!disciplinasDoProfessor.contains(turma.getDisciplina())) {
+                    disciplinasDoProfessor.add(turma.getDisciplina());
+                }
+            }
+        }
+        return disciplinasDoProfessor.size();
     }
 
     @Override
