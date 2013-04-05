@@ -81,17 +81,13 @@ public class AtividadeDaoImpl implements AtividadeDao {
 
     @Override
     public ArrayList<Atividade> getByTurma(Turma turma) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void listarPorTurma(Turma turma) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean hasId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Atividade> lista = new ArrayList<>();
+        for (Atividade atividade : jpaAtividade.findAtividadeEntities()) {
+            if (atividade.getTurma().equals(turma)) {
+                lista.add(atividade);
+            }
+        }
+        return lista;
     }
     
 }

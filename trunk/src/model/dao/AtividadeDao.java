@@ -23,7 +23,5 @@ public interface AtividadeDao {
     public Atividade get(int id);
     public List<Atividade> get();
     public ArrayList<Atividade> getByTurma(Turma turma);
-    public void listarPorTurma(Turma turma);
-    public boolean hasId(int id);
 
 }

@@ -19,5 +19,4 @@ public interface NotaAtividadeDao {
     public boolean delete(NotaAtividade registroAtividade);
     public NotaAtividade getById(int id);
     public List<NotaAtividade> getByAtividade(Atividade atividade);
-    public void clearAll();    
 }
