@@ -7,6 +7,7 @@ package model.dao;
 import dataBaseConections.NotaAtividadeJpaController;
 import dataBaseConections.exceptions.NonexistentEntityException;
 import java.util.ArrayList;
+import java.util.List;
 import model.pojo.Atividade;
 import model.pojo.NotaAtividade;
 
@@ -59,8 +60,15 @@ public class NotaAtividadeDaoImpl implements NotaAtividadeDao {
     }
 
     @Override
-    public ArrayList<NotaAtividade> getByAtividade(Atividade atividade) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<NotaAtividade> getByAtividade(Atividade atividade) {
+        List<NotaAtividade> lista = jpaNotaAtividade.findNotaAtividadeEntities();
+        List<NotaAtividade> retorno = new ArrayList<>();
+        for (NotaAtividade notaAtividade : lista) {
+            if(notaAtividade.getAtividade().equals(atividade)){
+                retorno.add(notaAtividade);
+            }
+        }
+        return retorno;
     }
 
     @Override

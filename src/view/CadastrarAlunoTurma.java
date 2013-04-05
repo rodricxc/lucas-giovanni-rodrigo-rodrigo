@@ -52,7 +52,7 @@ public class CadastrarAlunoTurma extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        selecionarAlunoBotao = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -61,15 +61,15 @@ public class CadastrarAlunoTurma extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         campoAluno = new javax.swing.JTextField();
         adicionarBotao = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        voltarBotao = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastrar Alunos na Turma");
 
-        jButton1.setText("Selecionar...");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        selecionarAlunoBotao.setText("Selecionar...");
+        selecionarAlunoBotao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                selecionarAlunoBotaoActionPerformed(evt);
             }
         });
 
@@ -118,10 +118,10 @@ public class CadastrarAlunoTurma extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setText("Voltar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        voltarBotao.setText("Voltar");
+        voltarBotao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                voltarBotaoActionPerformed(evt);
             }
         });
 
@@ -143,13 +143,13 @@ public class CadastrarAlunoTurma extends javax.swing.JDialog {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(campoAluno)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1))))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                                .addComponent(selecionarAlunoBotao))))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(adicionarBotao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(voltarBotao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -161,7 +161,7 @@ public class CadastrarAlunoTurma extends javax.swing.JDialog {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(selecionarAlunoBotao)
                     .addComponent(jLabel1)
                     .addComponent(campoAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -171,14 +171,14 @@ public class CadastrarAlunoTurma extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(voltarBotao)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void selecionarAlunoBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecionarAlunoBotaoActionPerformed
         SelecionarAluno o;
         o = new SelecionarAluno(null, true);
         o.setVisible(true);
@@ -191,11 +191,50 @@ public class CadastrarAlunoTurma extends javax.swing.JDialog {
         }else{
             JOptionPane.showMessageDialog(null,"Nenhum aluno selecionado!");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_selecionarAlunoBotaoActionPerformed
+
+    private void campoAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoAlunoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoAlunoActionPerformed
+
+    private void adicionarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarBotaoActionPerformed
+        if(turma==null){
+            
+            JOptionPane.showMessageDialog(null,"Cadastre uma turma!");
+            this.dispose();
+        }
+      
+
+        turma = (Turma) turmaCombo.getSelectedItem();
+
+        if(aluno!=null){
+            AlunoTurma at =new AlunoTurma(turma, aluno);
+            turma.addAluno(at);
+            aluno.addAlunoTurma(at);
+            TurmaDao tDao = TurmaDaoImpl.getInstance();
+            AlunoDao aDao = AlunoDaoImpl.getInstance();
+            AlunoTurmaDao atDao = AlunoTurmaDaoImpl.getInstance();
+            atDao.add(at);
+            tDao.update(turma);
+            aDao.update(aluno);
+            atualizarTabela();
+        }else{
+            JOptionPane.showMessageDialog(null,"Selecione um Aluno!");
+        }
+    }//GEN-LAST:event_adicionarBotaoActionPerformed
+
+    private void turmaComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_turmaComboActionPerformed
+        turma = (Turma) turmaCombo.getSelectedItem();
+        atualizarTabela();
+    }//GEN-LAST:event_turmaComboActionPerformed
+
+    private void voltarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarBotaoActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_voltarBotaoActionPerformed
 
     private void atualizarTabela(){
         DefaultTableModel model = (DefaultTableModel) tabela.getModel();
-        Object[] linha = new Object[3];
+        Object[] linha = new Object[2];
 
         model.setRowCount(0);
 
@@ -211,45 +250,6 @@ public class CadastrarAlunoTurma extends javax.swing.JDialog {
         
     }
     
-    private void campoAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoAlunoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoAlunoActionPerformed
-
-    private void adicionarBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarBotaoActionPerformed
-        if(turma==null){
-            System.out.println("-----------------------------");
-            JOptionPane.showMessageDialog(null,"Cadastre uma turma!");
-            this.dispose();
-        }
-        System.out.println("-------------aa--------------");
-            
-        turma = (Turma) turmaCombo.getSelectedItem();
-        
-        if(aluno!=null){
-            AlunoTurma at =new AlunoTurma(turma, aluno);
-            turma.addAluno(at);
-            aluno.addAlunoTurma(at);
-            TurmaDao tDao = TurmaDaoImpl.getInstance();
-            AlunoDao aDao = AlunoDaoImpl.getInstance();
-            AlunoTurmaDao atDao = AlunoTurmaDaoImpl.getInstance();
-            atDao.add(at);
-            tDao.update(turma);
-            aDao.update(aluno);     
-            atualizarTabela();
-        }else{
-            JOptionPane.showMessageDialog(null,"Selecione um Aluno!");
-        }
-    }//GEN-LAST:event_adicionarBotaoActionPerformed
-
-    private void turmaComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_turmaComboActionPerformed
-        turma = (Turma) turmaCombo.getSelectedItem();  
-        atualizarTabela();
-    }//GEN-LAST:event_turmaComboActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -294,13 +294,13 @@ public class CadastrarAlunoTurma extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adicionarBotao;
     private javax.swing.JTextField campoAluno;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton selecionarAlunoBotao;
     private javax.swing.JTable tabela;
     private javax.swing.JComboBox turmaCombo;
+    private javax.swing.JButton voltarBotao;
     // End of variables declaration//GEN-END:variables
 }

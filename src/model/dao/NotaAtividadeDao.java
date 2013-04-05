@@ -4,7 +4,7 @@
  */
 package model.dao;
 
-import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import model.pojo.Atividade;
@@ -18,6 +18,6 @@ public interface NotaAtividadeDao {
     public boolean add(NotaAtividade registroAtividade);
     public boolean delete(NotaAtividade registroAtividade);
     public NotaAtividade getById(int id);
-    public ArrayList<NotaAtividade> getByAtividade(Atividade atividade);
+    public List<NotaAtividade> getByAtividade(Atividade atividade);
     public void clearAll();    
 }

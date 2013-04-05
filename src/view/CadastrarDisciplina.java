@@ -189,6 +189,9 @@ public class CadastrarDisciplina extends javax.swing.JDialog {
             labelMensagem.setText("Erro, Valores inválidos!");
         }else if( dDao.add(d) ){
             labelMensagem.setText("Disciplina adicionada com sucesso!");
+            campoTextoCargaH.setText("");
+            campoTextoDisciplina.setText("");
+            areaTextoEmenta.setText("");
         }else{
             labelMensagem.setText("Erro, Disciplina nao adicionada!");
         }//*/

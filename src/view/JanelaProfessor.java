@@ -45,8 +45,9 @@ public class JanelaProfessor extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         textoDepartamento = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        botaoAddAtividade = new javax.swing.JButton();
+        botaoLancarNotas = new javax.swing.JButton();
+        botaoLancarFaltas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(" Professor");
@@ -119,17 +120,24 @@ public class JanelaProfessor extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jButton2.setText("Adicionar Atividade");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botaoAddAtividade.setText("Adicionar Atividade");
+        botaoAddAtividade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botaoAddAtividadeActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Lançar Notas");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        botaoLancarNotas.setText("Lançar Notas");
+        botaoLancarNotas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                botaoLancarNotasActionPerformed(evt);
+            }
+        });
+
+        botaoLancarFaltas.setText("Lançar Faltas");
+        botaoLancarFaltas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoLancarFaltasActionPerformed(evt);
             }
         });
 
@@ -142,14 +150,16 @@ public class JanelaProfessor extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(botaoLancarFaltas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(botaoAddAtividade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botaoLancarNotas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton2, jButton3});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {botaoAddAtividade, botaoLancarNotas});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,10 +167,12 @@ public class JanelaProfessor extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(botaoAddAtividade)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addComponent(botaoLancarNotas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoLancarFaltas)
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         pack();
@@ -170,17 +182,23 @@ public class JanelaProfessor extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_textoCPFActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void botaoAddAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAddAtividadeActionPerformed
+        AdicionarAtividades ativ = new AdicionarAtividades(null, true,professor);
+        ativ.setVisible(true);
+    }//GEN-LAST:event_botaoAddAtividadeActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void botaoLancarNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLancarNotasActionPerformed
+        LancarNotas ln = new LancarNotas(null, true,professor);
+        ln.setVisible(true);
+    }//GEN-LAST:event_botaoLancarNotasActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void botaoLancarFaltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLancarFaltasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoLancarFaltasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,9 +242,10 @@ public class JanelaProfessor extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoAddAtividade;
+    private javax.swing.JButton botaoLancarFaltas;
+    private javax.swing.JButton botaoLancarNotas;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
