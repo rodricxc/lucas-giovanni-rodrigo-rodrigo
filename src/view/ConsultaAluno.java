@@ -29,17 +29,23 @@ public class ConsultaAluno extends javax.swing.JDialog {
         initComponents();
         
         DefaultTableModel model = (DefaultTableModel) tabela.getModel();
-        Object[] linha = new Object[3];
+        Object[] linha = new Object[4];
 
         model.setRowCount(0);
         
         List<AlunoTurma> lis= AlunoTurmaDaoImpl.getInstance().getByAluno(aluno);
 
+        List<AlunoTurma> aprovadas = aluno.getAprovadas();
         for (AlunoTurma at : lis) {
             
             linha[0] = at.getTurma().toString();
             linha[1] = at.getNotaFinal();
             linha[2] = at.getFaltas();
+            if (aprovadas.contains(at)){
+                linha[3] = "Aprovado";
+            }else{
+                linha[3] = "Reprovado";
+            }
             
             model.addRow(linha);
         }
@@ -73,14 +79,14 @@ public class ConsultaAluno extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Turma", "nota", "faltas"
+                "Turma", "Nota", "Faltas", "Situação"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Float.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Float.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
