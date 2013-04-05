@@ -102,5 +102,24 @@ public class AlunoTurma implements Serializable {
     public String toString() {
         return "model.dao.AlunoTurma[ id=" + id + " ]";
     }
+
+    /**
+     * @return the faltas
+     */
+    public int getFaltas() {
+        return faltas;
+    }
+
+    /**
+     * @return the notaFinal
+     */
+    public float getNotaFinal() {
+        float nota = 0;
+        for (NotaAtividade notaAtividade : notaAtividades) {
+            nota += notaAtividade.getNota();
+        }
+        notaFinal = nota;
+        return nota;
+    }
     
 }

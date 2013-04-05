@@ -39,6 +39,21 @@ public class Aluno extends Usuario implements Serializable {
         return false;
     }
 
+    public List<AlunoTurma> getAlunoTurmas() {
+        return this.alunoTurmas;
+    }
+    
+    public List<AlunoTurma> getAprovadas() {
+        List<AlunoTurma> lista = new ArrayList<>();
+        for (AlunoTurma alunoTurma : this.alunoTurmas) {
+            if (alunoTurma.getNotaFinal() >= 6.0 &&
+                    alunoTurma.getFaltas() <= alunoTurma.getTurma().getDisciplina().getCargaHoraria()) {
+                lista.add(alunoTurma);
+            }
+        }
+        return lista;
+    }
+    
     @Override
     public String toString() {
         return this.nome+" - cpf: "+this.cpf;
